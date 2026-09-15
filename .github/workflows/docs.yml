@@ -39,8 +39,11 @@ jobs:
 
       - run: npm ci
 
-      # Runs the data sync first. Set DOCS_BASE here (for example to "/") when using a custom domain.
+      # Runs the data sync first. Served from the root of a custom (sub)domain, so no /FishTrap/ prefix.
+      # Remove DOCS_BASE to go back to https://<user>.github.io/FishTrap/.
       - run: npm run build
+        env:
+          DOCS_BASE: /
 
       - uses: actions/upload-pages-artifact@v3
         with:
