@@ -38,6 +38,11 @@ for (const file of existsSync(itemTextures) ? readdirSync(itemTextures).filter((
   copyFileSync(join(itemTextures, file), join(docs, 'public/items', file))
   textures[`fishtrap:${basename(file, '.png')}`] = `/items/${file}`
 }
+// Block items have no flat texture, so their icons are rendered from the block model and committed in public/icons/.
+const renderedIcons = join(docs, 'public/icons')
+for (const file of existsSync(renderedIcons) ? readdirSync(renderedIcons).filter((f) => f.endsWith('.png')) : []) {
+  textures[`fishtrap:${basename(file, '.png')}`] ??= `/icons/${file}`
+}
 mkdirSync(join(docs, 'public/gui'), { recursive: true })
 copyFileSync(join(assets, 'textures/gui/container/fish_trap.png'), join(docs, 'public/gui/fish_trap.png'))
 
