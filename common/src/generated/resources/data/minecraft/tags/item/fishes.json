@@ -1,0 +1,16 @@
+{
+  "values": [
+    "fishtrap:trout",
+    "fishtrap:catfish",
+    "fishtrap:mackerel",
+    "fishtrap:crab",
+    "fishtrap:lobster",
+    "fishtrap:crayfish",
+    "fishtrap:cooked_trout",
+    "fishtrap:cooked_catfish",
+    "fishtrap:cooked_mackerel",
+    "fishtrap:cooked_crab",
+    "fishtrap:cooked_lobster",
+    "fishtrap:cooked_crayfish"
+  ]
+}

@@ -1,0 +1,132 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cod",
+          "quality": -1,
+          "weight": 35
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fishtrap:mackerel",
+          "weight": 30
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:salmon",
+          "quality": -1,
+          "weight": 8
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:pufferfish",
+          "weight": 12
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fishtrap:crab",
+          "quality": 1,
+          "weight": 10
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:tropical_fish",
+          "quality": 1,
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fishtrap:fish_chum",
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:kelp",
+          "quality": -2,
+          "weight": 8
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:seagrass",
+          "quality": -2,
+          "weight": 6
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bone",
+          "quality": -2,
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:ink_sac",
+          "quality": -1,
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.9,
+                "min": 0.0
+              },
+              "function": "minecraft:set_damage"
+            }
+          ],
+          "name": "minecraft:leather_boots",
+          "quality": -2,
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:prismarine_shard",
+          "quality": 1,
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:prismarine_crystals",
+          "quality": 1,
+          "weight": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fishtrap:prismarine_lure",
+          "quality": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:nautilus_shell",
+          "quality": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:heart_of_the_sea",
+          "quality": 1
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "items": "fishtrap:netherite_net"
+              }
+            }
+          ],
+          "name": "fishtrap:rainbow_fish",
+          "quality": 1
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "fishtrap:fish_trap/ocean"
+}

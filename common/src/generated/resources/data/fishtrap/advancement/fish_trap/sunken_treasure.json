@@ -1,0 +1,31 @@
+{
+  "parent": "fishtrap:fish_trap/first_catch",
+  "criteria": {
+    "heart_of_the_sea": {
+      "conditions": {
+        "item": {
+          "items": "minecraft:heart_of_the_sea"
+        }
+      },
+      "trigger": "fishtrap:fish_trap_catch"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.fishtrap.sunken_treasure.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "id": "minecraft:heart_of_the_sea"
+    },
+    "title": {
+      "translate": "advancements.fishtrap.sunken_treasure.title"
+    }
+  },
+  "requirements": [
+    [
+      "heart_of_the_sea"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

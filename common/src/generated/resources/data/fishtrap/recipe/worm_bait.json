@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "fishtrap:plant_bait",
+    "fishtrap:plant_bait",
+    "minecraft:rotten_flesh",
+    "minecraft:dirt"
+  ],
+  "result": {
+    "count": 4,
+    "id": "fishtrap:worm_bait"
+  }
+}

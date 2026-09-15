@@ -1,0 +1,8 @@
+// 26.1.2	2026-09-15T22:27:50.4727554	Loot Tables
+f66ba89ef328448338a774093e5a34a2e37e8528 data/fishtrap/loot_table/blocks/fish_trap.json
+173ba46472f1a7c509558002f9b1b6b11ffc65d4 data/fishtrap/loot_table/fish_trap/cold_ocean.json
+580c1e31b91178edd1fc4cb97bf16391919da50c data/fishtrap/loot_table/fish_trap/default.json
+6de45d90c749bcd42bfe885b7ff7b099807b82a7 data/fishtrap/loot_table/fish_trap/ocean.json
+7a6b70c57f3b6396e25447bb2160b8859f038dd2 data/fishtrap/loot_table/fish_trap/river.json
+6ce15f5d49cc3c29c90abbc802e74965e11efecf data/fishtrap/loot_table/fish_trap/swamp.json
+f2c35cc9d3894cd9cfe739bd02a007fb54974dc9 data/fishtrap/loot_table/fish_trap/warm_ocean.json

@@ -1,0 +1,115 @@
+{
+  "type": "minecraft:fishing",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:cod",
+          "quality": -1,
+          "weight": 45
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:salmon",
+          "quality": -1,
+          "weight": 20
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fishtrap:trout",
+          "weight": 12
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:pufferfish",
+          "weight": 8
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fishtrap:crayfish",
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:tropical_fish",
+          "quality": 1,
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "fishtrap:worm_bait",
+          "quality": -1,
+          "weight": 4
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:stick",
+          "quality": -2,
+          "weight": 6
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:string",
+          "quality": -2,
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:bone",
+          "quality": -2,
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:rotten_flesh",
+          "quality": -2,
+          "weight": 5
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "damage": {
+                "type": "minecraft:uniform",
+                "max": 0.9,
+                "min": 0.0
+              },
+              "function": "minecraft:set_damage"
+            }
+          ],
+          "name": "minecraft:leather_boots",
+          "quality": -2,
+          "weight": 3
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:name_tag",
+          "quality": 2
+        },
+        {
+          "type": "minecraft:item",
+          "name": "minecraft:saddle",
+          "quality": 2
+        },
+        {
+          "type": "minecraft:item",
+          "conditions": [
+            {
+              "condition": "minecraft:match_tool",
+              "predicate": {
+                "items": "fishtrap:netherite_net"
+              }
+            }
+          ],
+          "name": "fishtrap:rainbow_fish",
+          "quality": 1
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "fishtrap:fish_trap/default"
+}

@@ -1,0 +1,31 @@
+{
+  "parent": "fishtrap:fish_trap/first_catch",
+  "criteria": {
+    "rainbow_fish": {
+      "conditions": {
+        "item": {
+          "items": "fishtrap:rainbow_fish"
+        }
+      },
+      "trigger": "fishtrap:fish_trap_catch"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.fishtrap.rainbow_fish.description"
+    },
+    "frame": "challenge",
+    "icon": {
+      "id": "fishtrap:rainbow_fish"
+    },
+    "title": {
+      "translate": "advancements.fishtrap.rainbow_fish.title"
+    }
+  },
+  "requirements": [
+    [
+      "rainbow_fish"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

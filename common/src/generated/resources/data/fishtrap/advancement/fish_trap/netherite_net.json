@@ -1,0 +1,33 @@
+{
+  "parent": "fishtrap:fish_trap/copper_net",
+  "criteria": {
+    "has_netherite_net": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fishtrap:netherite_net"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.fishtrap.netherite_net.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "id": "fishtrap:netherite_net"
+    },
+    "title": {
+      "translate": "advancements.fishtrap.netherite_net.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_netherite_net"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

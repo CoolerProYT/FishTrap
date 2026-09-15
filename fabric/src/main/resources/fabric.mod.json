@@ -1,0 +1,46 @@
+{
+    "schemaVersion": 1,
+    "id": "${mod_id}",
+    "version": "${version}",
+    "name": "${mod_name}",
+    "description": "${description}",
+    "authors": [
+        "${mod_author}"
+    ],
+    "contact": {
+        "homepage": "https://fabricmc.net/",
+        "sources": "https://github.com/FabricMC/fabric-example-mod"
+    },
+    "license": "${license}",
+    "icon": "${mod_id}.png",
+    "environment": "*",
+    "entrypoints": {
+        "main": [
+            "com.coolerpromc.fishtrap.FabricFishTrap"
+        ],
+        "client": [
+            "com.coolerpromc.fishtrap.FabricFishTrapClient"
+        ],
+        "jei_mod_plugin": [
+            "com.coolerpromc.fishtrap.compat.jei.FishTrapJeiPlugin"
+        ],
+        "jade": [
+            "com.coolerpromc.fishtrap.compat.jade.FishTrapJadePlugin"
+        ]
+    },
+    "mixins": [
+        "${mod_id}.mixins.json",
+        "${mod_id}.fabric.mixins.json"
+    ],
+    "accessWidener": "fishtrap.classtweaker",
+    "depends": {
+        "fabricloader": ">=${fabric_loader_version}",
+        "fabric-api": "*",
+        "minecraft": "~${minecraft_version}",
+        "java": ">=${java_version}"
+    },
+    "suggests": {
+        "another-mod": "*"
+    }
+}
+  

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "fishtrap:fish_chum"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_worm_bait": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fishtrap:worm_bait"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_worm_bait"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "fishtrap:fish_chum"
+    ]
+  }
+}

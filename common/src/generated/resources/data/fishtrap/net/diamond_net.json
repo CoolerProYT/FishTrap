@@ -1,0 +1,7 @@
+{
+  "bonusCatchChance": 0.25,
+  "catchTimeMultiplier": 0.65,
+  "item": "fishtrap:diamond_net",
+  "luck": 2.0,
+  "style": "diamond"
+}

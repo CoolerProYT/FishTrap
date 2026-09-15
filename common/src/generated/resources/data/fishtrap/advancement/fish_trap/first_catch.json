@@ -1,0 +1,25 @@
+{
+  "parent": "fishtrap:fish_trap/root",
+  "criteria": {
+    "caught_anything": {
+      "trigger": "fishtrap:fish_trap_catch"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.fishtrap.first_catch.description"
+    },
+    "icon": {
+      "id": "minecraft:cod"
+    },
+    "title": {
+      "translate": "advancements.fishtrap.first_catch.title"
+    }
+  },
+  "requirements": [
+    [
+      "caught_anything"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

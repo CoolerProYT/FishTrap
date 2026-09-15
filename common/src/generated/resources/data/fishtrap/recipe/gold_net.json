@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "I": "minecraft:gold_ingot",
+    "N": "fishtrap:iron_net",
+    "S": "minecraft:string"
+  },
+  "pattern": [
+    "SIS",
+    "INI",
+    "SIS"
+  ],
+  "result": {
+    "id": "fishtrap:gold_net"
+  }
+}

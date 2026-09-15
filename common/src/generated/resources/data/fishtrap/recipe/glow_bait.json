@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "fishtrap:fish_chum",
+    "fishtrap:fish_chum",
+    "minecraft:glow_berries",
+    "minecraft:glow_ink_sac"
+  ],
+  "result": {
+    "count": 2,
+    "id": "fishtrap:glow_bait"
+  }
+}

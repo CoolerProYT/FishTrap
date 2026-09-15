@@ -1,0 +1,32 @@
+{
+  "parent": "fishtrap:fish_trap/glow_bait",
+  "criteria": {
+    "has_prismarine_lure": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fishtrap:prismarine_lure"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.fishtrap.prismarine_lure.description"
+    },
+    "icon": {
+      "id": "fishtrap:prismarine_lure"
+    },
+    "title": {
+      "translate": "advancements.fishtrap.prismarine_lure.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_prismarine_lure"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "fishtrap:worm_bait",
+    "fishtrap:worm_bait",
+    "#minecraft:fishes",
+    "minecraft:bone_meal"
+  ],
+  "result": {
+    "count": 4,
+    "id": "fishtrap:fish_chum"
+  }
+}

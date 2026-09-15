@@ -1,0 +1,4 @@
+// 26.1.2	2026-09-15T21:52:54.6196604	Tags for minecraft:worldgen/biome mod id fishtrap
+e37ebcc6790139d0267b5ca434789daa965be54d data/fishtrap/tags/worldgen/biome/fish_trap/cold_ocean.json
+6525dda69924a36f16797ed873bffc083e1f4de5 data/fishtrap/tags/worldgen/biome/fish_trap/swamp.json
+6da7190ccb8f6b1e65242c7ea5834a1a69fd5db2 data/fishtrap/tags/worldgen/biome/fish_trap/warm_ocean.json

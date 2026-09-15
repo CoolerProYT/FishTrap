@@ -1,0 +1,53 @@
+{
+  "parent": "fishtrap:fish_trap/first_catch",
+  "criteria": {
+    "catfish": {
+      "conditions": {
+        "item": {
+          "items": "fishtrap:catfish"
+        }
+      },
+      "trigger": "fishtrap:fish_trap_catch"
+    },
+    "mackerel": {
+      "conditions": {
+        "item": {
+          "items": "fishtrap:mackerel"
+        }
+      },
+      "trigger": "fishtrap:fish_trap_catch"
+    },
+    "trout": {
+      "conditions": {
+        "item": {
+          "items": "fishtrap:trout"
+        }
+      },
+      "trigger": "fishtrap:fish_trap_catch"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.fishtrap.fresh_catch.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "id": "fishtrap:mackerel"
+    },
+    "title": {
+      "translate": "advancements.fishtrap.fresh_catch.title"
+    }
+  },
+  "requirements": [
+    [
+      "trout"
+    ],
+    [
+      "catfish"
+    ],
+    [
+      "mackerel"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

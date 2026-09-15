@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_gold_net": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fishtrap:gold_net"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "fishtrap:diamond_net"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_gold_net"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "fishtrap:diamond_net"
+    ]
+  }
+}

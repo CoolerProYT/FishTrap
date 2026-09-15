@@ -1,0 +1,53 @@
+{
+  "parent": "fishtrap:fish_trap/first_catch",
+  "criteria": {
+    "crab": {
+      "conditions": {
+        "item": {
+          "items": "fishtrap:crab"
+        }
+      },
+      "trigger": "fishtrap:fish_trap_catch"
+    },
+    "crayfish": {
+      "conditions": {
+        "item": {
+          "items": "fishtrap:crayfish"
+        }
+      },
+      "trigger": "fishtrap:fish_trap_catch"
+    },
+    "lobster": {
+      "conditions": {
+        "item": {
+          "items": "fishtrap:lobster"
+        }
+      },
+      "trigger": "fishtrap:fish_trap_catch"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.fishtrap.shell_shocked.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "id": "fishtrap:lobster"
+    },
+    "title": {
+      "translate": "advancements.fishtrap.shell_shocked.title"
+    }
+  },
+  "requirements": [
+    [
+      "crab"
+    ],
+    [
+      "lobster"
+    ],
+    [
+      "crayfish"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

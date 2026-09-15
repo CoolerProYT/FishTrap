@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_fish_chum": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fishtrap:fish_chum"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "fishtrap:glow_bait"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_fish_chum"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "fishtrap:glow_bait"
+    ]
+  }
+}

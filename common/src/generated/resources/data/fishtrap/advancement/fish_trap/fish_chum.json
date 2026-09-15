@@ -1,0 +1,32 @@
+{
+  "parent": "fishtrap:fish_trap/worm_bait",
+  "criteria": {
+    "has_fish_chum": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fishtrap:fish_chum"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.fishtrap.fish_chum.description"
+    },
+    "icon": {
+      "id": "fishtrap:fish_chum"
+    },
+    "title": {
+      "translate": "advancements.fishtrap.fish_chum.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_fish_chum"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,75 @@
+plugins {
+    id 'multiloader-loader'
+    id 'net.neoforged.moddev'
+}
+
+// Dev-run-only mods: on the run classpath, but not published as dependencies (ModDevGradle has no built-in localRuntime).
+configurations {
+    localRuntime
+    runtimeClasspath.extendsFrom localRuntime
+}
+
+dependencies {
+    // Common sources (including compat plugins) are compiled here too.
+    compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+    compileOnly("maven.modrinth:jade:${jade_version}+neoforge")
+
+    // In the dev runs only (runClient/runServer/runData); not published as dependencies of the mod.
+    localRuntime("mezz.jei:jei-${minecraft_version}-neoforge:${jei_version}")
+    localRuntime("maven.modrinth:jade:${jade_version}+neoforge")
+}
+
+neoForge {
+    version = neoforge_version
+    // Automatically enable neoforge AccessTransformers if the file exists
+    def at = project(':common').file('src/main/resources/META-INF/accesstransformer.cfg')
+    if (at.exists()) {
+        accessTransformers.from(at.absolutePath)
+    }
+    runs {
+        configureEach {
+            systemProperty('neoforge.enabledGameTestNamespaces', mod_id)
+            ideName = "NeoForge ${it.name.capitalize()} (${project.path})" // Unify the run config names with fabric
+        }
+        client {
+            client()
+            gameDirectory = this.mkdir(this.file('runs/client'))
+        }
+        data {
+            clientData()
+            gameDirectory = this.mkdir(this.file('runs/data'))
+            // DataGen can be run by - "./gradlew :neoforge:runData" in Terminal.
+            // Output goes to :common's generated resources (packed by every loader); hand-written assets live in :common's main resources.
+            programArguments.addAll '--mod', project.mod_id, '--all', '--output', rootProject.file('common/src/generated/resources/').getAbsolutePath(), '--existing', rootProject.file('common/src/main/resources/').getAbsolutePath()
+        }
+        server {
+            server()
+            this.file('runs/server').createParentDirectories()
+            gameDirectory = this.mkdir(this.file('runs/server'))
+        }
+    }
+    mods {
+        "${mod_id}" {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+// Implement mcgradleconventions loader attribute
+def loaderAttribute = Attribute.of('io.github.mcgradleconventions.loader', String)
+['apiElements', 'runtimeElements', 'sourcesElements', 'javadocElements'].each { variant ->
+    configurations.named(variant) {
+        attributes {
+            attribute(loaderAttribute, 'neoforge')
+        }
+    }
+}
+sourceSets.configureEach {
+    [it.compileClasspathConfigurationName, it.runtimeClasspathConfigurationName, it.getTaskName(null, 'jarJar')].each { variant ->
+        configurations.named(variant) {
+            attributes {
+                attribute(loaderAttribute, 'neoforge')
+            }
+        }
+    }
+}

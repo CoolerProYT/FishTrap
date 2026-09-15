@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "G": "minecraft:gold_ingot",
+    "L": "fishtrap:prismarine_lure",
+    "N": "minecraft:nautilus_shell"
+  },
+  "pattern": [
+    " N ",
+    "LGL",
+    " L "
+  ],
+  "result": {
+    "count": 4,
+    "id": "fishtrap:nautilus_lure"
+  }
+}

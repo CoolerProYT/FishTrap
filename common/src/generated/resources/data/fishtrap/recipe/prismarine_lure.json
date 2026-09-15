@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": "minecraft:prismarine_crystals",
+    "G": "fishtrap:glow_bait",
+    "S": "minecraft:prismarine_shard"
+  },
+  "pattern": [
+    " C ",
+    "SGS",
+    " C "
+  ],
+  "result": {
+    "count": 2,
+    "id": "fishtrap:prismarine_lure"
+  }
+}

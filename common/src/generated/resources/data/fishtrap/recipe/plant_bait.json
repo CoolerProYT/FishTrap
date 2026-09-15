@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    "minecraft:wheat_seeds",
+    "minecraft:wheat_seeds",
+    "minecraft:bone_meal"
+  ],
+  "result": {
+    "count": 4,
+    "id": "fishtrap:plant_bait"
+  }
+}

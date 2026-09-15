@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "fishtrap:cooked_trout_from_smoking"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_trout": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fishtrap:trout"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_trout"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "fishtrap:cooked_trout_from_smoking"
+    ]
+  }
+}

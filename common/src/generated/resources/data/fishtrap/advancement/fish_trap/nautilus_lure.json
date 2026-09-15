@@ -1,0 +1,33 @@
+{
+  "parent": "fishtrap:fish_trap/prismarine_lure",
+  "criteria": {
+    "has_nautilus_lure": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fishtrap:nautilus_lure"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.fishtrap.nautilus_lure.description"
+    },
+    "frame": "goal",
+    "icon": {
+      "id": "fishtrap:nautilus_lure"
+    },
+    "title": {
+      "translate": "advancements.fishtrap.nautilus_lure.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_nautilus_lure"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

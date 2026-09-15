@@ -1,0 +1,6 @@
+{
+  "parent": "fishtrap:block/fish_trap",
+  "textures": {
+    "funnel": "fishtrap:block/fish_trap_funnel_netherite"
+  }
+}

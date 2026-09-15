@@ -1,0 +1,32 @@
+{
+  "parent": "fishtrap:fish_trap/root",
+  "criteria": {
+    "has_worm_bait": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fishtrap:worm_bait"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.fishtrap.worm_bait.description"
+    },
+    "icon": {
+      "id": "fishtrap:worm_bait"
+    },
+    "title": {
+      "translate": "advancements.fishtrap.worm_bait.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_worm_bait"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

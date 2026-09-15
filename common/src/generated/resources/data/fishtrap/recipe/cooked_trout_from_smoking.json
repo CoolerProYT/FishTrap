@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smoking",
+  "category": "food",
+  "cookingtime": 100,
+  "experience": 0.35,
+  "ingredient": "fishtrap:trout",
+  "result": {
+    "id": "fishtrap:cooked_trout"
+  }
+}

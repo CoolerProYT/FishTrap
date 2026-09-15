@@ -1,0 +1,34 @@
+{
+  "criteria": {
+    "has_fish_trap": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fishtrap:fish_trap"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": false,
+    "background": "minecraft:block/dark_prismarine",
+    "description": {
+      "translate": "advancements.fishtrap.root.description"
+    },
+    "icon": {
+      "id": "fishtrap:fish_trap"
+    },
+    "show_toast": false,
+    "title": {
+      "translate": "advancements.fishtrap.root.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_fish_trap"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "net=copper": {
+      "model": "fishtrap:block/fish_trap_copper"
+    },
+    "net=diamond": {
+      "model": "fishtrap:block/fish_trap_diamond"
+    },
+    "net=gold": {
+      "model": "fishtrap:block/fish_trap_gold"
+    },
+    "net=iron": {
+      "model": "fishtrap:block/fish_trap_iron"
+    },
+    "net=netherite": {
+      "model": "fishtrap:block/fish_trap_netherite"
+    },
+    "net=plastic": {
+      "model": "fishtrap:block/fish_trap"
+    }
+  }
+}

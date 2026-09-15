@@ -1,0 +1,32 @@
+{
+  "parent": "fishtrap:fish_trap/root",
+  "criteria": {
+    "has_copper_net": {
+      "conditions": {
+        "items": [
+          {
+            "items": "fishtrap:copper_net"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "description": {
+      "translate": "advancements.fishtrap.copper_net.description"
+    },
+    "icon": {
+      "id": "fishtrap:copper_net"
+    },
+    "title": {
+      "translate": "advancements.fishtrap.copper_net.title"
+    }
+  },
+  "requirements": [
+    [
+      "has_copper_net"
+    ]
+  ],
+  "sends_telemetry_event": true
+}
