@@ -2,15 +2,10 @@
 # One-time setup: repository Settings > Pages > Source: "GitHub Actions".
 name: Docs
 
+# Every push to any branch rebuilds and redeploys the wiki. There is only one Pages site,
+# so the most recent push wins if several branches are pushed.
 on:
   push:
-    branches: [main]
-    paths:
-      - 'docs/**'
-      # The wiki reads bait, catch tables, recipes and advancements from datagen output, and the mod's textures.
-      - 'common/src/generated/resources/**'
-      - 'common/src/main/resources/assets/fishtrap/textures/**'
-      - '.github/workflows/docs.yml'
   workflow_dispatch:
 
 permissions:
