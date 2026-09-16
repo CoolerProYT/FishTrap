@@ -25,7 +25,6 @@ import net.minecraft.world.Container;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.item.Item;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -56,10 +55,6 @@ public class FishTrap {
     }
 
     public static void initBiomeModifier(){
-
-    }
-
-    public static void initBrewingRecipe(){
 
     }
 
@@ -105,10 +100,6 @@ public class FishTrap {
 
     private static void registerBiomeModifier(TagKey<Biome> biomeTagKey, GenerationStep.Decoration step, ResourceKey<PlacedFeature> placedFeatureKey){
         Services.REGISTRY.registerFeatureBiomeModifier(biomeTagKey, step, placedFeatureKey);
-    }
-
-    private static void registerBrewingRecipe(Item from, Item ingredient, Item to){
-        Services.REGISTRY.registerBrewingRecipe(from, ingredient, to);
     }
 
     private static <T> void registerDatapackRegistry(ResourceKey<Registry<T>> resourceKey, Codec<T> serverCodec, Codec<T> clientCodec){

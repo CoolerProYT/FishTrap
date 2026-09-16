@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fishtrap:netherite_net_smithing"
+        "recipes": "fishtrap:netherite_net_smithing"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

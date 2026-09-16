@@ -9,7 +9,6 @@ import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.event.registry.DynamicRegistries;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
-import net.fabricmc.fabric.api.registry.FabricPotionBrewingBuilder;
 import net.fabricmc.fabric.api.resource.v1.ResourceLoader;
 import net.minecraft.server.packs.PackType;
 
@@ -21,7 +20,6 @@ public class FabricFishTrap implements ModInitializer {
         FishTrap.initCapability();
         FishTrap.initEntityAttribute();
         FishTrap.initBiomeModifier();
-        FishTrap.initBrewingRecipe();
         FishTrap.initDatapackRegistry();
         FishTrap.initPayloadType();
         FishTrap.initReloadListener();
@@ -32,7 +30,6 @@ public class FabricFishTrap implements ModInitializer {
 
         Services.CAPABILITIES.applyRegistrations(null);
 
-        FabricPotionBrewingBuilder.BUILD.register(builder -> Services.REGISTRY.applyBrewingRecipeRegistrations(builder::addContainerRecipe));
         Services.REGISTRY.applyDatapackRegistryRegistrations(DynamicRegistries::registerSynced);
 
         Services.REGISTRY.applyClientboundPayloadRegistrations(PayloadTypeRegistry.clientboundPlay()::register);

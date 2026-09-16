@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fishtrap:diamond_net"
+        "recipes": "fishtrap:diamond_net"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fishtrap:worm_bait"
+        "recipes": "fishtrap:worm_bait"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

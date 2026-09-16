@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fishtrap:cooked_trout_from_smoking"
+        "recipes": "fishtrap:cooked_trout_from_smoking"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

@@ -46,7 +46,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureType;
@@ -80,7 +79,7 @@ public interface IRegistryHelper {
     <T extends Structure> RegistryHandler<StructureType<?>, StructureType<T>> registerStructureType(String name, MapCodec<T> mapCodec);
     <T extends LootItemFunction> RegistryHandler<MapCodec<? extends LootItemFunction>, MapCodec<T>> registerLootItemFunction(String name, MapCodec<T> mapCodec);
     RegistryHandler<SoundEvent, SoundEvent> registerSoundEvent(String name);
-    <T extends FeatureConfiguration> RegistryHandler<Feature<?>, Feature<T>> registerFeature(String name, Feature<T> feature);
+    <T extends Feature> RegistryHandler<MapCodec<? extends Feature>, MapCodec<T>> registerFeature(String name, MapCodec<T> mapCodec);
     <T extends CriterionTrigger<?>> RegistryHandler<CriterionTrigger<?>, T> registerCriterionTrigger(String name, Supplier<T> trigger);
 
     void registerEntityAttribute(EntityType<? extends LivingEntity> entityType, AttributeSupplier supplier);
@@ -88,9 +87,6 @@ public interface IRegistryHelper {
 
     void registerFeatureBiomeModifier(TagKey<Biome> biomeTagKey, GenerationStep.Decoration step, ResourceKey<PlacedFeature> placedFeatureKey);
     void applyBiomeModifierRegistrations(FeatureBiomeModifierRegistrar registrar);
-
-    void registerBrewingRecipe(Item from, Item ingredient, Item to);
-    void applyBrewingRecipeRegistrations(BrewingRecipeRegistrar registrar);
 
     <T> void registerDatapackRegistry(ResourceKey<Registry<T>> key, Codec<T> serverCodec, Codec<T> clientCodec);
     void applyDatapackRegistryRegistrations(DatapackRegistryRegistrar registrar);
@@ -109,9 +105,6 @@ public interface IRegistryHelper {
     }
     interface FeatureBiomeModifierRegistrar {
         void register(TagKey<Biome> biomeTagKey, GenerationStep.Decoration step, ResourceKey<PlacedFeature> placedFeatureKey);
-    }
-    interface BrewingRecipeRegistrar {
-        void register(Item from, Item ingredient, Item to);
     }
     interface DatapackRegistryRegistrar {
         <T> void register(ResourceKey<Registry<T>> key, Codec<T> serverCodec, Codec<T> clientCodec);

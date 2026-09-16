@@ -10,7 +10,6 @@ import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.event.AddServerReloadListenersEvent;
 import net.neoforged.neoforge.event.OnDatapackSyncEvent;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
-import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 import net.neoforged.neoforge.event.entity.EntityAttributeCreationEvent;
 import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
@@ -34,12 +33,6 @@ public class NeoForgeFishTrap {
     public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
         FishTrap.initCapability();
         Services.CAPABILITIES.applyRegistrations(event);
-    }
-
-    @SubscribeEvent
-    public static void onRegisterBrewingRecipes(RegisterBrewingRecipesEvent event) {
-        FishTrap.initBrewingRecipe();
-        Services.REGISTRY.applyBrewingRecipeRegistrations(event.getBuilder()::addContainerRecipe);
     }
 
     @SubscribeEvent

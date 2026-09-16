@@ -4,7 +4,6 @@ import com.coolerpromc.fishtrap.block.entity.FishTrapBlockEntity;
 import com.coolerpromc.fishtrap.block.entity.ModBlockEntities;
 import com.coolerpromc.fishtrap.platform.Services;
 import com.coolerpromc.fishtrap.upgrade.NetStyle;
-import com.mojang.serialization.MapCodec;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -38,7 +37,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jspecify.annotations.Nullable;
 
 public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
-    public static final MapCodec<FishTrapBlock> CODEC = simpleCodec(FishTrapBlock::new);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     public static final EnumProperty<NetStyle> NET = EnumProperty.create("net", NetStyle.class);
     private static final VoxelShape SHAPE = Block.box(1, 0, 3, 15, 10.5, 13);
@@ -46,11 +44,6 @@ public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedB
     public FishTrapBlock(Properties properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any().setValue(WATERLOGGED, false).setValue(NET, NetStyle.PLASTIC));
-    }
-
-    @Override
-    public MapCodec<FishTrapBlock> codec() {
-        return CODEC;
     }
 
     @Override

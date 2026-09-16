@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fishtrap:cooked_catfish"
+        "recipes": "fishtrap:cooked_catfish"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

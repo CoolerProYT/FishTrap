@@ -53,7 +53,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.feature.Feature;
-import net.minecraft.world.level.levelgen.feature.configurations.FeatureConfiguration;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 import net.minecraft.world.level.levelgen.structure.Structure;
 import net.minecraft.world.level.levelgen.structure.StructureType;
@@ -73,7 +72,6 @@ public class FabricRegistryHelper implements IRegistryHelper {
     private final List<CommandBuilder> commands = new ArrayList<>();
     private final List<EntityAttributeEntry> entityAttributes = new ArrayList<>();
     private final List<FeatureBiomeModifierEntry> featureBiomeModifiers = new ArrayList<>();
-    private final List<BrewingRecipeEntry> brewingRecipes = new ArrayList<>();
     private final List<DatapackRegistryEntry<?>> datapackRegistries = new ArrayList<>();
     private final List<ClientboundPayloadEntry<?>> clientboundPayloads = new ArrayList<>();
 
@@ -200,9 +198,9 @@ public class FabricRegistryHelper implements IRegistryHelper {
     }
 
     @Override
-    public <T extends FeatureConfiguration> RegistryHandler<Feature<?>, Feature<T>> registerFeature(String name, Feature<T> feature) {
+    public <T extends Feature> RegistryHandler<MapCodec<? extends Feature>, MapCodec<T>> registerFeature(String name, MapCodec<T> mapCodec) {
         Identifier id = Constants.id(name);
-        Holder<Feature<?>> holder = Registry.registerForHolder(BuiltInRegistries.FEATURE, id, feature);
+        Holder<MapCodec<? extends Feature>> holder = Registry.registerForHolder(BuiltInRegistries.FEATURE_TYPE, id, mapCodec);
         return () -> holder;
     }
 
@@ -232,18 +230,6 @@ public class FabricRegistryHelper implements IRegistryHelper {
     @Override
     public void applyBiomeModifierRegistrations(FeatureBiomeModifierRegistrar registrar) {
         for (FeatureBiomeModifierEntry entry : featureBiomeModifiers) {
-            entry.register(registrar);
-        }
-    }
-
-    @Override
-    public void registerBrewingRecipe(Item from, Item ingredient, Item to) {
-        this.brewingRecipes.add(new BrewingRecipeEntry(from, ingredient, to));
-    }
-
-    @Override
-    public void applyBrewingRecipeRegistrations(BrewingRecipeRegistrar registrar) {
-        for (BrewingRecipeEntry entry : brewingRecipes) {
             entry.register(registrar);
         }
     }
@@ -281,12 +267,6 @@ public class FabricRegistryHelper implements IRegistryHelper {
     private record FeatureBiomeModifierEntry(TagKey<Biome> biomeTagKey, GenerationStep.Decoration step, ResourceKey<PlacedFeature> placedFeatureKey){
         private void register(FeatureBiomeModifierRegistrar registrar){
             registrar.register(this.biomeTagKey, this.step, this.placedFeatureKey);
-        }
-    }
-
-    private record BrewingRecipeEntry(Item from, Item ingredient, Item to){
-        private void register(BrewingRecipeRegistrar registrar){
-            registrar.register(this.from, this.ingredient, this.to);
         }
     }
 

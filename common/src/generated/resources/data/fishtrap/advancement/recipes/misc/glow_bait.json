@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fishtrap:glow_bait"
+        "recipes": "fishtrap:glow_bait"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

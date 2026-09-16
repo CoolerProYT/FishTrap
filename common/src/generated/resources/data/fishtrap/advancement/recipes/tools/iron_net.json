@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fishtrap:iron_net"
+        "recipes": "fishtrap:iron_net"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

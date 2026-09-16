@@ -3,7 +3,7 @@
   "criteria": {
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fishtrap:fish_chum"
+        "recipes": "fishtrap:fish_chum"
       },
       "trigger": "minecraft:recipe_unlocked"
     },

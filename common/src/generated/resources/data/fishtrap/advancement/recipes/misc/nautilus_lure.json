@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fishtrap:nautilus_lure"
+        "recipes": "fishtrap:nautilus_lure"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

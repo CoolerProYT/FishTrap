@@ -72,19 +72,17 @@
         },
         {
           "type": "minecraft:item",
-          "conditions": [
-            {
-              "condition": "minecraft:match_tool",
-              "predicate": {
-                "items": "fishtrap:netherite_net"
-              }
+          "condition": {
+            "type": "minecraft:match_tool",
+            "predicate": {
+              "items": "fishtrap:netherite_net"
             }
-          ],
+          },
           "name": "fishtrap:rainbow_fish",
           "quality": 1
         }
       ],
-      "rolls": 1.0
+      "rolls": 1
     }
   ],
   "random_sequence": "fishtrap:fish_trap/cold_ocean"

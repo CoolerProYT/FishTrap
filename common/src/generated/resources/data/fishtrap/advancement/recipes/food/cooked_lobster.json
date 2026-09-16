@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fishtrap:cooked_lobster"
+        "recipes": "fishtrap:cooked_lobster"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

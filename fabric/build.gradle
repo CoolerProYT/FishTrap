@@ -10,12 +10,12 @@ dependencies {
     implementation("net.fabricmc.fabric-api:fabric-api:${fabric_version}")
 
     // Common sources (including compat plugins) are compiled here too.
-    compileOnly("mezz.jei:jei-${minecraft_version}-common-api:${jei_version}")
+    compileOnly("mezz.jei:jei-${dependencies_mc_version}-common-api:${jei_version}")
     compileOnly("maven.modrinth:jade:${jade_version}+fabric")
 
     // In the dev runs only (runClient/runServer); not published as dependencies of the mod.
-    localRuntime("mezz.jei:jei-${minecraft_version}-fabric:${jei_version}")
-    localRuntime("maven.modrinth:jade:${jade_version}+fabric")
+//    localRuntime("mezz.jei:jei-${dependencies_mc_version}-fabric:${jei_version}")
+//    localRuntime("maven.modrinth:jade:${jade_version}+fabric")
 }
 
 loom {

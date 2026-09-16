@@ -13,7 +13,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "fishtrap:gold_net"
+        "recipes": "fishtrap:gold_net"
       },
       "trigger": "minecraft:recipe_unlocked"
     }

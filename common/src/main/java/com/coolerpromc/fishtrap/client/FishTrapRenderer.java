@@ -66,7 +66,7 @@ public class FishTrapRenderer implements BlockEntityRenderer<FishTrapBlockEntity
         if (!state.bait.isEmpty()) {
             poseStack.pushPose();
             poseStack.translate(BAIT_X / 16.0F, BAIT_Y / 16.0F, BAIT_Z / 16.0F);
-            poseStack.mulPose(Axis.YP.rotationDegrees(state.baitSpin));
+            poseStack.rotateDegrees(Axis.YP, state.baitSpin);
             poseStack.scale(BAIT_SCALE, BAIT_SCALE, BAIT_SCALE);
             state.bait.submit(poseStack, submitNodeCollector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
             poseStack.popPose();
@@ -80,8 +80,8 @@ public class FishTrapRenderer implements BlockEntityRenderer<FishTrapBlockEntity
             float[] spot = CATCH_SPOTS[i];
             poseStack.pushPose();
             poseStack.translate(spot[0] / 16.0F, CATCH_Y / 16.0F, spot[1] / 16.0F);
-            poseStack.mulPose(Axis.YP.rotationDegrees(Math.floorMod(state.seed * 31 + i * 97, 360)));
-            poseStack.mulPose(Axis.XP.rotationDegrees(90.0F));
+            poseStack.rotateDegrees(Axis.YP, Math.floorMod(state.seed * 31 + i * 97, 360));
+            poseStack.rotateDegrees(Axis.XP, 90.0F);
             poseStack.scale(CATCH_SCALE, CATCH_SCALE, CATCH_SCALE);
             itemState.submit(poseStack, submitNodeCollector, state.lightCoords, OverlayTexture.NO_OVERLAY, 0);
             poseStack.popPose();

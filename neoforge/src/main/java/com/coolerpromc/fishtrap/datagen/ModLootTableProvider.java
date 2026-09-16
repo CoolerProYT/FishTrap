@@ -4,46 +4,43 @@ import com.coolerpromc.fishtrap.block.ModBlocks;
 import com.coolerpromc.fishtrap.item.ModItems;
 import com.coolerpromc.fishtrap.loot.FishTrapLootTables;
 import net.minecraft.advancements.predicates.ItemPredicate;
-import net.minecraft.core.HolderLookup;
+import net.minecraft.core.HolderGetter;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.data.PackOutput;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.data.loot.LootTableProvider;
 import net.minecraft.data.loot.LootTableSubProvider;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.entries.LootPoolSingletonContainer;
+import net.minecraft.world.level.storage.loot.entries.UniformContainerBase;
 import net.minecraft.world.level.storage.loot.functions.SetItemDamageFunction;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.level.storage.loot.predicates.MatchTool;
-import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
-import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
+import net.minecraft.world.level.storage.loot.providers.number.floats.ContextFloatProviders;
+import net.minecraft.world.level.storage.loot.providers.number.ints.ContextIntProviders;
 
 import java.util.List;
 import java.util.Set;
-import java.util.concurrent.CompletableFuture;
-import java.util.function.BiConsumer;
 
 public final class ModLootTableProvider {
     private ModLootTableProvider() {
     }
 
-    public static LootTableProvider create(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
-        return new LootTableProvider(output, Set.of(), List.of(
+    public static LootTableProvider create() {
+        return new LootTableProvider(Set.of(), List.of(
                 new LootTableProvider.SubProviderEntry(BlockLoot::new, LootContextParamSets.BLOCK),
                 new LootTableProvider.SubProviderEntry(FishTrapLoot::new, LootContextParamSets.FISHING)
-        ), lookupProvider);
+        ));
     }
 
     private static class BlockLoot extends BlockLootSubProvider {
-        BlockLoot(HolderLookup.Provider registries) {
-            super(Set.of(), FeatureFlags.REGISTRY.allFlags(), registries);
+        BlockLoot(LootTableSubProvider.Context output) {
+            super(Set.of(), FeatureFlags.REGISTRY.allFlags(), output);
         }
 
         @Override
@@ -57,10 +54,10 @@ public final class ModLootTableProvider {
         }
     }
 
-    private record FishTrapLoot(HolderLookup.Provider registries) implements LootTableSubProvider {
+    private record FishTrapLoot(LootTableSubProvider.Context output) implements LootTableSubProvider {
         @Override
-        public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> output) {
-            output.accept(FishTrapLootTables.DEFAULT, table(
+        public void run() {
+            this.output.accept(FishTrapLootTables.DEFAULT, table(
                     entry(Items.COD, 45, -1),
                     entry(Items.SALMON, 20, -1),
                     entry(ModItems.TROUT, 12, 0),
@@ -78,7 +75,7 @@ public final class ModLootTableProvider {
                     rainbowFish(1)
             ));
 
-            output.accept(FishTrapLootTables.RIVER, table(
+            this.output.accept(FishTrapLootTables.RIVER, table(
                     entry(Items.SALMON, 40, -1),
                     entry(ModItems.TROUT, 25, 0),
                     entry(Items.COD, 15, -1),
@@ -97,7 +94,7 @@ public final class ModLootTableProvider {
                     rainbowFish(1)
             ));
 
-            output.accept(FishTrapLootTables.SWAMP, table(
+            this.output.accept(FishTrapLootTables.SWAMP, table(
                     entry(ModItems.CATFISH, 35, 0),
                     entry(ModItems.CRAYFISH, 20, 0),
                     entry(Items.SALMON, 5, -1),
@@ -114,7 +111,7 @@ public final class ModLootTableProvider {
                     rainbowFish(1)
             ));
 
-            output.accept(FishTrapLootTables.OCEAN, table(
+            this.output.accept(FishTrapLootTables.OCEAN, table(
                     entry(Items.COD, 35, -1),
                     entry(ModItems.MACKEREL, 30, 0),
                     entry(Items.SALMON, 8, -1),
@@ -135,7 +132,7 @@ public final class ModLootTableProvider {
                     rainbowFish(1)
             ));
 
-            output.accept(FishTrapLootTables.COLD_OCEAN, table(
+            this.output.accept(FishTrapLootTables.COLD_OCEAN, table(
                     entry(Items.COD, 35, -1),
                     entry(Items.SALMON, 20, -1),
                     entry(ModItems.MACKEREL, 15, 0),
@@ -151,7 +148,7 @@ public final class ModLootTableProvider {
                     rainbowFish(1)
             ));
 
-            output.accept(FishTrapLootTables.WARM_OCEAN, table(
+            this.output.accept(FishTrapLootTables.WARM_OCEAN, table(
                     entry(Items.TROPICAL_FISH, 40, 0),
                     entry(Items.PUFFERFISH, 25, 0),
                     entry(ModItems.CRAB, 12, 0),
@@ -168,27 +165,28 @@ public final class ModLootTableProvider {
             ));
         }
 
-        private LootPoolSingletonContainer.Builder<?> rainbowFish(int weight) {
+        private UniformContainerBase.Builder<?> rainbowFish(int weight) {
+            HolderGetter<Item> items = this.output.lookup(Registries.ITEM);
             return LootItem.lootTableItem(ModItems.RAINBOW_FISH).setWeight(weight).setQuality(1)
-                    .when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(this.registries.lookupOrThrow(Registries.ITEM), ModItems.NETHERITE_NET)));
+                    .when(MatchTool.toolMatches(ItemPredicate.Builder.item().of(items, ModItems.NETHERITE_NET)));
         }
 
         @SafeVarargs
-        private static LootTable.Builder table(LootPoolSingletonContainer.Builder<?>... entries) {
-            LootPool.Builder pool = LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F));
-            for (LootPoolSingletonContainer.Builder<?> entry : entries) {
+        private static LootTable.Builder table(UniformContainerBase.Builder<?>... entries) {
+            LootPool.Builder pool = LootPool.lootPool().setRolls(ContextIntProviders.exactly(1));
+            for (UniformContainerBase.Builder<?> entry : entries) {
                 pool.add(entry);
             }
             return LootTable.lootTable().withPool(pool);
         }
 
-        private static LootPoolSingletonContainer.Builder<?> entry(ItemLike item, int weight, int quality) {
+        private static UniformContainerBase.Builder<?> entry(ItemLike item, int weight, int quality) {
             return LootItem.lootTableItem(item).setWeight(weight).setQuality(quality);
         }
 
-        private static LootPoolSingletonContainer.Builder<?> damaged(ItemLike item, int weight, int quality) {
+        private static UniformContainerBase.Builder<?> damaged(ItemLike item, int weight, int quality) {
             return LootItem.lootTableItem(item).setWeight(weight).setQuality(quality)
-                    .apply(SetItemDamageFunction.setDamage(UniformGenerator.between(0.0F, 0.9F)));
+                    .apply(SetItemDamageFunction.setDamage(ContextFloatProviders.between(0.0F, 0.9F)));
         }
     }
 }
