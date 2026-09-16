@@ -1,6 +1,7 @@
 plugins {
     id 'multiloader-loader'
     id 'net.neoforged.moddev'
+    id "me.modmuss50.mod-publish-plugin"
 }
 
 // Dev-run-only mods: on the run classpath, but not published as dependencies (ModDevGradle has no built-in localRuntime).
@@ -71,5 +72,27 @@ sourceSets.configureEach {
                 attribute(loaderAttribute, 'neoforge')
             }
         }
+    }
+}
+
+publishMods {
+    file.set(jar.archiveFile)
+    changelog = rootProject.file("changelog.md").text
+    type = BETA
+    modLoaders.add("neoforge")
+    displayName = mod_id + "-" + project.version + "+" + minecraft_version + "-neoforge"
+
+    curseforge {
+        projectId = "1698064"
+        accessToken = findProperty("CF_TOKEN")
+        minecraftVersions.add(minecraft_version)
+        client = true
+        server = true
+    }
+
+    modrinth {
+        projectId = 'M6Gz8cee'
+        accessToken = findProperty("MODRINTH_TOKEN")
+        minecraftVersions.add(minecraft_version)
     }
 }

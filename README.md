@@ -1,32 +1,85 @@
-# MultiLoader Template
+<img src="docs/public/icons/fish_trap.png" width="72" align="right" alt="">
 
-This project provides a Gradle project template that can compile Minecraft mods for multiple modloaders using a common project for the sources. This project does not require any third party libraries or dependencies. If you have any questions or want to discuss the project, please join our [Discord](https://discord.myceliummod.network).
+# Fish Trap
 
-## Getting Started
+A Minecraft mod that adds an underwater trap which fishes on its own. Place it below the surface,
+bait it, and it pulls in fish, junk and treasure based on the biome it sits in.
 
-### IntelliJ IDEA
-This guide will show how to import the MultiLoader Template into IntelliJ IDEA. The setup process is roughly equivalent to setting up the modloaders independently and should be very familiar to anyone who has worked with their MDKs.
+**[Wiki](https://fishtrap.coolerpromc.com)** · Minecraft 26.1.2 · Fabric and NeoForge · MIT
 
-1. Clone or download this repository to your computer.
-2. Configure the project by setting the properties in the `gradle.properties` file. You will also need to change the `rootProject.name`  property in `settings.gradle`, this should match the folder name of your project, or else IDEA may complain.
-3. Open the template's root folder as a new project in IDEA. This is the folder that contains this README.md file and the gradlew executable.
-4. If your default JVM/JDK is not Java 25 you will encounter an error when opening the project. This error is fixed by going to `File > Settings > Build, Execution, Deployment > Build Tools > Gradle > Gradle JVM` and changing the value to a valid Java 25 JVM. You will also need to set the Project SDK to Java 25. This can be done by going to `File > Project Structure > Project SDK`. Once both have been set open the Gradle tab in IDEA and click the refresh button to reload the project.
-5. Open your Run/Debug Configurations. Under the `Application` category there should now be options to run Fabric and NeoForge projects. Select one of the client options and try to run it.
-6. Assuming you were able to run the game in step 5 your workspace should now be set up.
+## Features
 
-### Eclipse
-While it is possible to use this template in Eclipse it is not recommended. During the development of this template multiple critical bugs and quirks related to Eclipse were found at nearly every level of the required build tools. While we continue to work with these tools to report and resolve issues support for projects like these are not there yet. For now Eclipse is considered unsupported by this project. The development cycle for build tools is notoriously slow so there are no ETAs available.
+- **A trap that fishes without you.** Works only while fully submerged; every completed timer is a
+  catch, and overflow drops into the water instead of stalling.
+- **Six baits** that set both the timer and the luck applied to the roll, from Plant Bait to the
+  Nautilus Lure.
+- **Five net upgrades** that make the trap faster and luckier, add a chance at a second catch, and
+  unlock catches cheaper nets cannot land. The trap's funnel changes colour to match the net.
+- **Biome-specific catches** — separate tables for ocean, warm ocean, cold ocean, river, swamp and
+  everywhere else.
+- **Six new species** (trout, mackerel, catfish, crab, lobster, crayfish), all cookable, plus the
+  **Rainbow Fish**: Absorption V and Resistance II when eaten.
+- **Hopper friendly.** Pull catches from the bottom, push bait in from any other side.
+- **13 advancements**, plus **JEI** and **Jade** integration when those mods are installed.
 
-## Development Guide
-When using this template the majority of your mod should be developed in the `common` project. The `common` project is compiled against the vanilla game and is used to hold code that is shared between the different loader-specific versions of your mod. The `common` project has no knowledge or access to ModLoader specific code, apis, or concepts. Code that requires something from a specific loader must be done through the project that is specific to that loader, such as the `fabric` or `neoforge` projects.
+## Installing
 
-Loader specific projects such as the `fabric` and `neoforge` project are used to load the `common` project into the game. These projects also define code that is specific to that loader. Loader specific projects can access all the code in the `common` project. It is important to remember that the `common` project can not access code from loader specific projects.
+1. Minecraft **26.1.2** with [Fabric](https://fabricmc.net/) (and Fabric API) or
+   [NeoForge](https://neoforged.net/).
+2. Drop the jar for your loader into `mods/`.
+3. Optional: [JEI](https://modrinth.com/mod/jei) for catch chances in-game, and
+   [Jade](https://modrinth.com/mod/jade) to see what a trap is doing by looking at it.
 
-## Removing Platforms and Loaders
-While this template has support for many modloaders, new loaders may appear in the future, and existing loaders may become less relevant.
+## Datapacks
 
-Removing loader specific projects is as easy as deleting the folder, and removing the `include("projectname")` line from the `settings.gradle` file.
-For example if you wanted to remove support for `forge` you would follow the following steps:
+Bait, nets and catch tables are datapack JSON — no config file, no code. `/reload` applies changes
+immediately and the server syncs them to clients.
 
-1. Delete the subproject folder. For example, delete `MultiLoader-Template/forge`.
-2. Remove the project from `settings.gradle`. For example, remove `include("forge")`. 
+| Path | Defines |
+| --- | --- |
+| `data/<namespace>/bait/<name>.json` | item, min/max ticks, luck |
+| `data/<namespace>/net/<name>.json` | item, style, speed multiplier, luck, bonus chance |
+| `data/<namespace>/loot_table/fish_trap/<biome>.json` | a standard fishing loot table |
+
+Field-by-field reference: [the datapack pages on the wiki](https://fishtrap.coolerpromc.com/datapacks/).
+
+## Building
+
+Requires JDK 25.
+
+```bash
+./gradlew build                 # jars for both loaders, under fabric/build/libs and neoforge/build/libs
+./gradlew :fabric:runClient     # run the Fabric client
+./gradlew :neoforge:runClient   # run the NeoForge client
+./gradlew :neoforge:runData     # regenerate models, recipes, loot tables, tags, advancements and lang
+```
+
+Datagen is NeoForge-only and writes into `common/src/generated/resources`, which every loader
+includes, so both jars ship identical generated data. Re-run it after changing any provider and
+commit the output.
+
+## Project layout
+
+| Directory | Contents |
+| --- | --- |
+| `common/` | The mod. Block, block entity, menu, registries, datapack loaders, JEI and Jade compat. Compiled against vanilla, with no loader APIs. |
+| `fabric/`, `neoforge/` | Loader entry points and the service implementations `common` calls through. |
+| `neoforge/…/datagen/` | Every data provider; the source of truth for recipes, loot tables and advancements. |
+| `common/src/generated/resources/` | Datagen output. Generated, but committed. |
+| `docs/` | The VitePress wiki. See [docs/README.md](docs/README.md). |
+| `blockbench/` | The Blockbench source for the trap model. |
+| `build-logic/` | Shared Gradle conventions for the subprojects. |
+
+The mod's own code lives in `common` wherever possible; loader-specific code goes behind the
+`Services` interfaces rather than into the shared sources.
+
+## Wiki
+
+The site at [fishtrap.coolerpromc.com](https://fishtrap.coolerpromc.com) is built from `docs/` and
+reads bait stats, catch tables, recipes, advancements and item textures out of the mod's own
+datagen output, so it cannot drift from the game. Every push rebuilds and redeploys it through
+GitHub Actions.
+
+## License
+
+[MIT](LICENSE). Built on the [MultiLoader Template](https://github.com/jaredlll08/MultiLoader-Template).
