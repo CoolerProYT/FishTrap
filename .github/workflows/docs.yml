@@ -2,8 +2,10 @@
 # One-time setup: repository Settings > Pages > Source: "GitHub Actions".
 name: Docs
 
-# Every push to any branch rebuilds and redeploys the wiki. There is only one Pages site,
-# so the most recent push wins if several branches are pushed.
+# Pushes to the repository's default branch rebuild and redeploy the wiki. The branch is not
+# named here: the build job compares the pushed ref against the repository's own default branch,
+# so renaming it (or making a new version branch the default) needs no change to this file.
+# A manual run deploys whatever branch it is started from.
 on:
   push:
   workflow_dispatch:
@@ -19,6 +21,7 @@ concurrency:
 
 jobs:
   build:
+    if: github.event_name == 'workflow_dispatch' || github.ref_name == github.event.repository.default_branch
     runs-on: ubuntu-latest
     defaults:
       run:
