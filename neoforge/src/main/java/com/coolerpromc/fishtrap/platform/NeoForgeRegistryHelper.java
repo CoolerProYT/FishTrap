@@ -10,7 +10,7 @@ import com.coolerpromc.fishtrap.platform.util.RegistryHandler;
 import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.MapCodec;
-import net.minecraft.advancements.CriterionTrigger;
+import net.minecraft.advancements.triggers.CriterionTrigger;
 import net.minecraft.commands.CommandBuildContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;

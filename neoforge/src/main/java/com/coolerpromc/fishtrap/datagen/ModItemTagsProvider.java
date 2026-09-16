@@ -18,8 +18,8 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider registries) {
-        TagAppender<Item, Item> fishes = tag(ItemTags.FISHES);
-        ModItems.RAW_CATCHES.forEach(item -> fishes.add(item.get()));
-        ModItems.COOKED_CATCHES.forEach(item -> fishes.add(item.get()));
+        TagAppender<Item> fishes = tag(ItemTags.FISHES);
+        ModItems.RAW_CATCHES.forEach(item -> fishes.add(item.key()));
+        ModItems.COOKED_CATCHES.forEach(item -> fishes.add(item.key()));
     }
 }

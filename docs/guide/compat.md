@@ -24,7 +24,3 @@ Looking at a trap with [Jade](https://modrinth.com/mod/jade) shows:
 - the fitted net
 - **Next catch: 45%** while it is working
 - **Not underwater** or **Add bait** when something is wrong
-
-## REI
-
-REI has no release for Minecraft 26.1 yet. Support will follow once it does.

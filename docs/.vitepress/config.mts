@@ -5,7 +5,7 @@ const base = process.env.DOCS_BASE ?? '/FishTrap/'
 
 export default defineConfig({
   title: 'Fish Trap',
-  description: 'Automatic underwater fishing for Minecraft 26.1: bait, catches, new fish and datapacks.',
+  description: 'Automatic underwater fishing for Minecraft 26.1+: bait, catches, new fish and datapacks.',
   base,
   cleanUrls: true,
   srcExclude: ['README.md', 'scripts/**'],

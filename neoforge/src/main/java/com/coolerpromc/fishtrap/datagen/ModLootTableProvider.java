@@ -3,7 +3,7 @@ package com.coolerpromc.fishtrap.datagen;
 import com.coolerpromc.fishtrap.block.ModBlocks;
 import com.coolerpromc.fishtrap.item.ModItems;
 import com.coolerpromc.fishtrap.loot.FishTrapLootTables;
-import net.minecraft.advancements.criterion.ItemPredicate;
+import net.minecraft.advancements.predicates.ItemPredicate;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;

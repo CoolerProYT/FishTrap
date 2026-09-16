@@ -5,7 +5,7 @@
 A Minecraft mod that adds an underwater trap which fishes on its own. Place it below the surface,
 bait it, and it pulls in fish, junk and treasure based on the biome it sits in.
 
-**[Wiki](https://fishtrap.coolerpromc.com)** · Minecraft 26.1.2 · Fabric and NeoForge · MIT
+**[Wiki](https://fishtrap.coolerpromc.com)** · Minecraft 26.2 · Fabric and NeoForge · MIT
 
 ## Features
 
@@ -24,7 +24,7 @@ bait it, and it pulls in fish, junk and treasure based on the biome it sits in.
 
 ## Installing
 
-1. Minecraft **26.1.2** with [Fabric](https://fabricmc.net/) (and Fabric API) or
+1. Minecraft **26.2** with [Fabric](https://fabricmc.net/) (and Fabric API) or
    [NeoForge](https://neoforged.net/).
 2. Drop the jar for your loader into `mods/`.
 3. Optional: [JEI](https://modrinth.com/mod/jei) for catch chances in-game, and

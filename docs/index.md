@@ -4,7 +4,7 @@ layout: home
 hero:
   name: Fish Trap
   text: Fishing that keeps going while you do something else
-  tagline: Sink a mesh trap, load it with bait, and come back to a full catch. For Minecraft 26.1 on Fabric and NeoForge.
+  tagline: Sink a mesh trap, load it with bait, and come back to a full catch. For Minecraft 26.1+ on Fabric and NeoForge.
   image:
     src: /items/nautilus_lure.png
     alt: Nautilus Lure

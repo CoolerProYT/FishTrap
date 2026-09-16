@@ -4,7 +4,7 @@ Fish Trap adds a block that fishes on its own. Place it underwater, give it bait
 
 ## Install
 
-1. Install [Fabric](https://fabricmc.net/) with Fabric API, or [NeoForge](https://neoforged.net/), for Minecraft **26.1.2**.
+1. Install [Fabric](https://fabricmc.net/) with Fabric API, or [NeoForge](https://neoforged.net/), for Minecraft **26.2**.
 2. Put the Fish Trap jar in your `mods` folder.
 3. Optional: add [JEI](https://modrinth.com/mod/jei) to see catch chances in game, and [Jade](https://modrinth.com/mod/jade) to see what a trap is doing by looking at it.
 

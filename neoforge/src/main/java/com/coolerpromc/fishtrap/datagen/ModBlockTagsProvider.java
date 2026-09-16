@@ -16,6 +16,6 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider registries) {
-        tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.FISH_TRAP.get());
+        tag(BlockTags.MINEABLE_WITH_AXE).add(ModBlocks.FISH_TRAP.key());
     }
 }

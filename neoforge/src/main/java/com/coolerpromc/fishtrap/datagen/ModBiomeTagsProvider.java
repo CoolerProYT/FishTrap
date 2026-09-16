@@ -3,17 +3,15 @@ package com.coolerpromc.fishtrap.datagen;
 import com.coolerpromc.fishtrap.Constants;
 import com.coolerpromc.fishtrap.loot.FishTrapLootTables;
 import net.minecraft.core.HolderLookup;
-import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.KeyTagProvider;
-import net.minecraft.world.level.biome.Biome;
+import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.world.level.biome.Biomes;
 
 import java.util.concurrent.CompletableFuture;
 
-public class ModBiomeTagsProvider extends KeyTagProvider<Biome> {
+public class ModBiomeTagsProvider extends BiomeTagsProvider {
     public ModBiomeTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
-        super(output, Registries.BIOME, lookupProvider, Constants.MODID);
+        super(output, lookupProvider, Constants.MODID);
     }
 
     @Override
