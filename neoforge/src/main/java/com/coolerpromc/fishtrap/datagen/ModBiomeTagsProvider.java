@@ -11,7 +11,6 @@ import net.minecraft.world.level.biome.Biomes;
 
 import java.util.concurrent.CompletableFuture;
 
-/** Biome categories for catch tables; datapacks can append modded biomes to these tags. */
 public class ModBiomeTagsProvider extends KeyTagProvider<Biome> {
     public ModBiomeTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
         super(output, Registries.BIOME, lookupProvider, Constants.MODID);

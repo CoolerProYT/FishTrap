@@ -17,7 +17,6 @@ import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
-/** Speed and luck of each bait item. */
 public class BaitCategory extends AbstractRecipeCategory<BaitRecipe> {
     public static final IRecipeType<BaitRecipe> TYPE = IRecipeType.create(Constants.id("fish_trap_bait"), BaitRecipe.class);
     private static final int TEXT_COLOR = 0xFF404040;
@@ -28,9 +27,7 @@ public class BaitCategory extends AbstractRecipeCategory<BaitRecipe> {
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, BaitRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 1, 10)
-                .setStandardSlotBackground()
-                .add(new ItemStack(recipe.bait().item()));
+        builder.addSlot(RecipeIngredientRole.INPUT, 1, 10).setStandardSlotBackground().add(new ItemStack(recipe.bait().item()));
     }
 
     @Override

@@ -17,7 +17,6 @@ public final class FishTrapTooltips {
     private FishTrapTooltips() {
     }
 
-    /** Appended to any item's tooltip; works for datapack-defined bait and nets because both lists are synced. */
     public static void append(ItemStack stack, List<Component> lines) {
         if (stack.is(ModItems.FISH_TRAP.get())) {
             lines.add(Component.translatable("tooltip.fishtrap.fish_trap").withStyle(ChatFormatting.GRAY));
@@ -63,16 +62,13 @@ public final class FishTrapTooltips {
         if (multiplier == 1.0F) {
             return Component.translatable("tooltip.fishtrap.net.speed_normal");
         }
-        return multiplier < 1.0F
-                ? Component.translatable("tooltip.fishtrap.net.faster", percent(1.0F - multiplier))
-                : Component.translatable("tooltip.fishtrap.net.slower", percent(multiplier - 1.0F));
+        return multiplier < 1.0F ? Component.translatable("tooltip.fishtrap.net.faster", percent(1.0F - multiplier)) : Component.translatable("tooltip.fishtrap.net.slower", percent(multiplier - 1.0F));
     }
 
     public static MutableComponent netBonus(NetType net) {
         return Component.translatable("tooltip.fishtrap.net.bonus", percent(net.bonusCatchChance()));
     }
 
-    /** Whole percentages without decimals ("20%"), others with one ("7.5%"). */
     public static String percent(double fraction) {
         double value = Math.round(fraction * 1000.0) / 10.0;
         return value == Math.floor(value) ? String.format(Locale.ROOT, "%.0f%%", value) : String.format(Locale.ROOT, "%.1f%%", value);

@@ -12,7 +12,6 @@ import snownee.jade.api.IBlockComponentProvider;
 import snownee.jade.api.ITooltip;
 import snownee.jade.api.config.IPluginConfig;
 
-/** Client half: shows the loaded bait and net, and the status or progress sent by {@link FishTrapJadeDataProvider}. */
 public enum FishTrapJadeProvider implements IBlockComponentProvider {
     INSTANCE;
 
@@ -20,7 +19,6 @@ public enum FishTrapJadeProvider implements IBlockComponentProvider {
 
     @Override
     public void appendTooltip(ITooltip tooltip, BlockAccessor accessor, IPluginConfig config) {
-        // Bait and net are synced to clients with the block entity, so they show even without Jade on the server.
         if (accessor.getBlockEntity() instanceof FishTrapBlockEntity trap) {
             ItemStack bait = trap.getBaitStack();
             if (!bait.isEmpty()) {

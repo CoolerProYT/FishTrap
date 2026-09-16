@@ -7,7 +7,6 @@ import snownee.jade.api.IWailaCommonRegistration;
 import snownee.jade.api.IWailaPlugin;
 import snownee.jade.api.WailaPlugin;
 
-/** Found through {@link WailaPlugin} on NeoForge and the {@code jade} entrypoint on Fabric. */
 @WailaPlugin
 public class FishTrapJadePlugin implements IWailaPlugin {
     @Override

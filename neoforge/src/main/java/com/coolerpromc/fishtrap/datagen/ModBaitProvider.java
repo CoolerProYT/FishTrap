@@ -19,8 +19,6 @@ public class ModBaitProvider extends JsonCodecProvider<BaitType> {
 
     @Override
     protected void gather() {
-        // Each tier is faster (lower, tighter tick range) and luckier than the one it is crafted from.
-        // Negative luck pushes rolls towards junk (negative quality entries).
         bait(ModItems.PLANT_BAIT, 2400, 4800, -1.0F);
         bait(ModItems.WORM_BAIT, 1600, 3200, 0.0F);
         bait(ModItems.FISH_CHUM, 1200, 2000, 1.0F);

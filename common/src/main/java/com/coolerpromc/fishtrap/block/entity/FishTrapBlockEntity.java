@@ -62,12 +62,10 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider {
     public static final int STATUS_NOT_SUBMERGED = 1;
     public static final int STATUS_NO_BAIT = 2;
 
-    /** Timer value while no catch cycle is running. */
     public static final int IDLE = -1;
 
     private static final Component NAME = Component.translatable("container.fishtrap.fish_trap");
 
-    /** Only registered bait may be inserted, by players or automation. */
     private final SimpleContainer bait = new TrapContainer(1) {
         @Override
         public boolean canPlaceItem(int slot, ItemStack stack) {
@@ -75,7 +73,6 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider {
         }
     };
 
-    /** Optional net upgrade; one at a time. */
     private final SimpleContainer net = new TrapContainer(1) {
         @Override
         public boolean canPlaceItem(int slot, ItemStack stack) {
@@ -88,7 +85,6 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider {
         }
     };
 
-    /** Filled by the trap itself; automation may extract but never insert. */
     private final SimpleContainer output = new TrapContainer(OUTPUT_SLOT_COUNT) {
         @Override
         public boolean canPlaceItem(int slot, ItemStack stack) {
@@ -138,10 +134,8 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider {
         }
 
         NetType netType = NetRegistry.get(trap.net.getItem(0));
-        // Checked every tick rather than on slot change, so a /reload that changes net styles also updates the look.
         updateNetStyle(level, pos, state, netType);
 
-        // Out of water the trap simply pauses; the running timer is kept.
         if (!isSubmerged(level, pos, state)) {
             trap.status = STATUS_NOT_SUBMERGED;
             return;
@@ -165,12 +159,10 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider {
         }
 
         if (--trap.catchTimer > 0) {
-            // Persist progress without the comparator/neighbour updates a full setChanged() triggers every tick.
             level.blockEntityChanged(pos);
             return;
         }
 
-        // Bait is always consumed per cycle, whatever the roll yields.
         trap.bait.removeItem(0, 1);
         trap.rollCatch(serverLevel, pos, baitType, netType);
 
@@ -182,7 +174,6 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider {
         trap.markUpdated();
     }
 
-    /** Waterlogged (so the trap's own space is water) with water above, i.e. fully under the surface. */
     public static boolean isSubmerged(Level level, BlockPos pos, BlockState state) {
         return state.getValueOrElse(FishTrapBlock.WATERLOGGED, false) && level.getFluidState(pos.above()).is(FluidTags.WATER);
     }
@@ -207,7 +198,6 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider {
 
     private void rollCatch(ServerLevel level, BlockPos pos, BaitType baitType, @Nullable NetType netType) {
         LootTable table = FishTrapLootTables.resolve(level, pos);
-        // The net is the loot "tool", so tables can gate catches on it with minecraft:match_tool.
         ItemStack tool = netType == null ? new ItemStack(Items.FISHING_ROD) : this.net.getItem(0).copyWithCount(1);
         LootParams params = new LootParams.Builder(level)
                 .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
@@ -229,10 +219,6 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider {
         level.playSound(null, pos, SoundEvents.FISHING_BOBBER_SPLASH, SoundSource.BLOCKS, 0.35F, 0.8F + level.getRandom().nextFloat() * 0.4F);
     }
 
-    /**
-     * Merges into matching output stacks first, then empty slots. Returns whatever did not fit.
-     * Writes the list directly because the output container refuses {@link Container#canPlaceItem} insertion.
-     */
     private ItemStack insertIntoOutput(ItemStack stack) {
         NonNullList<ItemStack> items = this.output.getItems();
         for (int slot = 0; slot < items.size() && !stack.isEmpty(); slot++) {
@@ -253,12 +239,10 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider {
         return stack;
     }
 
-    /** Side-aware item handler: the bottom exposes the catch, every other side (and no side) the bait slot. */
     public Container getContainer(@Nullable Direction side) {
         return side == Direction.DOWN ? this.output : this.bait;
     }
 
-    /** Every container, used when the capability is queried without a side. */
     public Container[] getContainers() {
         return new Container[]{this.bait, this.net, this.output};
     }
@@ -271,7 +255,6 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider {
         return this.net.getItem(0);
     }
 
-    /** Non-empty catch stacks; synced to clients for the renderer. */
     public List<ItemStack> getCatches() {
         return this.output.getItems().stream().filter(stack -> !stack.isEmpty()).toList();
     }
@@ -280,7 +263,6 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider {
         return this.status;
     }
 
-    /** Progress of the current catch cycle from 0 to 1, or 0 while idle. Server side only. */
     public float getCatchProgress() {
         if (this.catchTimer < 0 || this.catchDuration <= 0) {
             return 0.0F;
@@ -288,7 +270,6 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider {
         return (this.catchDuration - this.catchTimer) / (float) this.catchDuration;
     }
 
-    /** Saves and sends the new contents to watching clients so the renderer shows the bait and catch. */
     private void markUpdated() {
         this.setChanged();
         if (this.level != null && !this.level.isClientSide()) {
@@ -350,7 +331,6 @@ public class FishTrapBlockEntity extends BlockEntity implements MenuProvider {
         return new FishTrapMenu(containerId, inventory, this.bait, this.net, this.output, this.dataAccess, ContainerLevelAccess.create(this.level, this.worldPosition));
     }
 
-    /** Marks the block entity dirty (and syncs it) on any change and closes menus once the player walks away. */
     private class TrapContainer extends SimpleContainer {
         TrapContainer(int size) {
             super(size);

@@ -25,7 +25,6 @@ import net.minecraft.world.item.ItemStack;
 import java.util.List;
 import java.util.function.Consumer;
 
-/** One page per catch table: every possible catch, with its chance for each bait in the tooltip. */
 public class CatchTableCategory extends AbstractRecipeCategory<CatchTableRecipe> {
     public static final IRecipeType<CatchTableRecipe> TYPE = IRecipeType.create(Constants.id("fish_trap_catch"), CatchTableRecipe.class);
     private static final int COLUMNS = 9;
@@ -54,10 +53,6 @@ public class CatchTableCategory extends AbstractRecipeCategory<CatchTableRecipe>
         guiGraphics.text(Minecraft.getInstance().font, recipe.table().displayName(), 0, 1, 0xFF404040, false);
     }
 
-    /**
-     * Chances per bait. Entries that need a net are shown with that net fitted (its luck included);
-     * everything else is shown without a net.
-     */
     private static void appendChances(Consumer<Component> tooltip, CatchTable table, CatchEntry entry) {
         tooltip.accept(Component.translatable("jei.fishtrap.weight", entry.weight(), entry.quality()).withStyle(ChatFormatting.GRAY));
 

@@ -97,7 +97,6 @@ public class FishTrapClient {
         registerClientPayloadReceiver(FishTrapDataPayload.TYPE);
     }
 
-    /** Called from each loader's item tooltip event. */
     public static void appendTooltip(ItemStack stack, List<Component> lines){
         FishTrapTooltips.append(stack, lines);
     }

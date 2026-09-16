@@ -54,7 +54,6 @@ public class FishTrapJeiPlugin implements IModPlugin {
         registration.addCraftingStation(NetCategory.TYPE, ModBlocks.FISH_TRAP);
     }
 
-    /** The data sync can arrive after JEI has started, and again on {@code /reload}, so recipes are swapped at runtime. */
     @Override
     public void onRuntimeAvailable(IJeiRuntime jeiRuntime) {
         runtime = jeiRuntime;

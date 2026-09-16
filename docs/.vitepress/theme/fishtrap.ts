@@ -1,3 +1,4 @@
+// @ts-ignore
 import raw from '../data/data.json'
 
 export interface Bait {
@@ -81,21 +82,25 @@ export function itemName(id: string): string {
   if (TAG_NAMES[id]) return TAG_NAMES[id]
   const path = id.replace(/^#/, '').split(':').pop() ?? id
   return path
-    .split('_')
+    .split('_') // @ts-ignore
     .map((word) => (['of', 'the'].includes(word) ? word : word.charAt(0).toUpperCase() + word.slice(1)))
     .join(' ')
 }
 
+/** Hosted renders of vanilla items, one PNG per item id. Mojang's textures are not bundled here. */
+const VANILLA_ICONS = 'https://storage.googleapis.com/coolerpromc/textures'
+
 /**
  * Where to load an item's icon from. Mod items use the textures copied from the mod (a site path);
- * vanilla items use hosted renders, since Mojang's textures are not bundled here.
+ * vanilla items use the hosted renders.
  */
 export function itemIcon(id: string): { src: string; local: boolean } | null {
   const itemId = TAG_ICONS[id] ?? id
   if (data.textures[itemId]) return { src: data.textures[itemId], local: true }
+  // @ts-ignore
   const [namespace, path] = itemId.includes(':') ? itemId.split(':') : ['minecraft', itemId]
   if (namespace !== 'minecraft') return null
-  return { src: `https://coolerpromc.com/minecraft/item/${namespace}__${path}.png`, local: false }
+  return { src: `${VANILLA_ICONS}/${namespace}/${path}.png`, local: false }
 }
 
 /** Vanilla loot pools: max(floor(weight + quality * luck), 0). */
@@ -104,6 +109,7 @@ export function effectiveWeight(entry: CatchEntry, luck: number): number {
 }
 
 export function availableWith(entry: CatchEntry, netItem: string | null): boolean {
+  // @ts-ignore
   return entry.requires.length === 0 || (netItem !== null && entry.requires.includes(netItem))
 }
 
@@ -121,6 +127,7 @@ export function chances(table: CatchTable, luck: number, netItem: string | null)
 
 export function seconds(ticks: number): string {
   const value = ticks / 20
+  // @ts-ignore
   return Number.isInteger(value) ? `${value}` : value.toFixed(1)
 }
 
@@ -130,6 +137,7 @@ export function signed(value: number): string {
 
 export function percent(fraction: number): string {
   const value = Math.round(fraction * 1000) / 10
+  // @ts-ignore
   return `${Number.isInteger(value) ? value : value.toFixed(1)}%`
 }
 

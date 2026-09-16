@@ -47,7 +47,6 @@ public class FishTrapScreen extends AbstractContainerScreen<FishTrapMenu> {
             default -> null;
         };
         if (status != null) {
-            // Centred under the bait and net slots (16px item area starting at BAIT_SLOT_X).
             int centerX = FishTrapMenu.BAIT_SLOT_X + 8;
             graphics.text(this.font, status, centerX - this.font.width(status) / 2, STATUS_Y, STATUS_COLOR, false);
         }

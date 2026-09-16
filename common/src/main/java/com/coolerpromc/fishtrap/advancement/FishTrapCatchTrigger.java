@@ -12,7 +12,6 @@ import net.minecraft.world.item.ItemStack;
 
 import java.util.Optional;
 
-/** {@code fishtrap:fish_trap_catch}: a player takes an item out of a fish trap's catch slots. */
 public class FishTrapCatchTrigger extends SimpleCriterionTrigger<FishTrapCatchTrigger.TriggerInstance> {
     @Override
     public Codec<TriggerInstance> codec() {

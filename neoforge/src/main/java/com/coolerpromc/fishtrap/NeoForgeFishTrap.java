@@ -1,6 +1,5 @@
 package com.coolerpromc.fishtrap;
 
-
 import com.coolerpromc.fishtrap.platform.NeoForgeRegistryHelper;
 import com.coolerpromc.fishtrap.platform.Services;
 import net.neoforged.bus.api.IEventBus;
@@ -17,7 +16,6 @@ import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import net.neoforged.neoforge.registries.DataPackRegistryEvent;
 
-// Without @EventBusSubscriber FML never registers the static @SubscribeEvent methods below (the bus is picked per event type).
 @Mod(Constants.MODID)
 @EventBusSubscriber(modid = Constants.MODID)
 public class NeoForgeFishTrap {

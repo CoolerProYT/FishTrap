@@ -25,10 +25,6 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Consumer;
 
-/**
- * The Fish Trap advancement tab: branches for bait, nets and catches.
- * Catch advancements use {@code fishtrap:fish_trap_catch}, so fishing with a rod does not count.
- */
 public class ModAdvancementProvider implements AdvancementSubProvider {
     public static AdvancementProvider create(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider) {
         return new AdvancementProvider(output, lookupProvider, List.of(new ModAdvancementProvider()));
@@ -43,18 +39,15 @@ public class ModAdvancementProvider implements AdvancementSubProvider {
                 .addCriterion("has_fish_trap", InventoryChangeTrigger.TriggerInstance.hasItems(ModItems.FISH_TRAP))
                 .save(output, id("root"));
 
-        // Bait branch.
         AdvancementHolder wormBait = obtain(output, root, "worm_bait", ModItems.WORM_BAIT, AdvancementType.TASK);
         AdvancementHolder fishChum = obtain(output, wormBait, "fish_chum", ModItems.FISH_CHUM, AdvancementType.TASK);
         AdvancementHolder glowBait = obtain(output, fishChum, "glow_bait", ModItems.GLOW_BAIT, AdvancementType.TASK);
         AdvancementHolder prismarineLure = obtain(output, glowBait, "prismarine_lure", ModItems.PRISMARINE_LURE, AdvancementType.TASK);
         obtain(output, prismarineLure, "nautilus_lure", ModItems.NAUTILUS_LURE, AdvancementType.GOAL);
 
-        // Net branch.
         AdvancementHolder copperNet = obtain(output, root, "copper_net", ModItems.COPPER_NET, AdvancementType.TASK);
         obtain(output, copperNet, "netherite_net", ModItems.NETHERITE_NET, AdvancementType.GOAL);
 
-        // Catch branch.
         AdvancementHolder firstCatch = Advancement.Builder.advancement()
                 .parent(root)
                 .display(Items.COD, title("first_catch"), description("first_catch"), null, AdvancementType.TASK, true, true, false)

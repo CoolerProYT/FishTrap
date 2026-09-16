@@ -16,7 +16,6 @@ import net.minecraft.server.MinecraftServer;
 
 import java.util.List;
 
-/** Sent on join and after {@code /reload}: bait and net stats for tooltips, catch tables for recipe viewers. */
 public record FishTrapDataPayload(List<BaitType> baits, List<NetType> nets, List<CatchTable> tables) implements HandledCustomPacketPayload {
     public static final Type<FishTrapDataPayload> TYPE = new Type<>(Constants.id("fish_trap_data"));
 
@@ -36,7 +35,6 @@ public record FishTrapDataPayload(List<BaitType> baits, List<NetType> nets, List
         context.execute(() -> {
             BaitRegistry.acceptSynced(this.baits);
             NetRegistry.acceptSynced(this.nets);
-            // Last, because it notifies listeners (JEI) that read all three.
             CatchTables.acceptSynced(this.tables);
         });
     }

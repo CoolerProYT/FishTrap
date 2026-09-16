@@ -19,10 +19,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-/**
- * Datapack driven net lookup, rebuilt from {@code data/<namespace>/net/*.json} on every data reload.
- * Clients receive a copy through the data sync payload.
- */
 public class NetRegistry extends SimpleJsonResourceReloadListener<NetType> {
     public static final String DIRECTORY = "net";
     public static final Identifier ID = Constants.id(DIRECTORY);
@@ -63,7 +59,6 @@ public class NetRegistry extends SimpleJsonResourceReloadListener<NetType> {
         return nets.values();
     }
 
-    /** Weakest to strongest: by luck, then by speed. */
     public static List<NetType> sorted() {
         return nets.values().stream()
                 .sorted(Comparator.comparingDouble(NetType::luck).thenComparing(NetType::catchTimeMultiplier, Comparator.reverseOrder()))

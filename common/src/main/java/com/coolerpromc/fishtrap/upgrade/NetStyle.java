@@ -6,7 +6,6 @@ import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.util.StringRepresentable;
 
-/** How the funnel and bait tube look; a blockstate property, so each style has its own block model. */
 public enum NetStyle implements StringRepresentable {
     PLASTIC("plastic"),
     COPPER("copper"),

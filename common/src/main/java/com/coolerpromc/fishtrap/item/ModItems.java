@@ -18,7 +18,6 @@ import java.util.List;
 public class ModItems {
     public static final RegistryHandler.Items<BlockItem> FISH_TRAP = Services.REGISTRY.registerItem("fish_trap", properties -> new BlockItem(ModBlocks.FISH_TRAP.get(), properties.useBlockDescriptionPrefix()));
 
-    // Bait tiers, each crafted from the previous one. Speed and luck live in data/<namespace>/bait/*.json, not on the item.
     public static final RegistryHandler.Items<Item> PLANT_BAIT = bait("plant_bait");
     public static final RegistryHandler.Items<Item> WORM_BAIT = bait("worm_bait");
     public static final RegistryHandler.Items<Item> FISH_CHUM = bait("fish_chum");
@@ -26,20 +25,16 @@ public class ModItems {
     public static final RegistryHandler.Items<Item> PRISMARINE_LURE = bait("prismarine_lure");
     public static final RegistryHandler.Items<Item> NAUTILUS_LURE = bait("nautilus_lure");
 
-    /** In progression order. */
     public static final List<RegistryHandler.Items<Item>> BAITS = List.of(PLANT_BAIT, WORM_BAIT, FISH_CHUM, GLOW_BAIT, PRISMARINE_LURE, NAUTILUS_LURE);
 
-    // Net upgrades, each crafted from the previous one. Stats live in data/<namespace>/net/*.json.
     public static final RegistryHandler.Items<Item> COPPER_NET = net("copper_net");
     public static final RegistryHandler.Items<Item> IRON_NET = net("iron_net");
     public static final RegistryHandler.Items<Item> GOLD_NET = net("gold_net");
     public static final RegistryHandler.Items<Item> DIAMOND_NET = net("diamond_net");
     public static final RegistryHandler.Items<Item> NETHERITE_NET = Services.REGISTRY.registerItem("netherite_net", Item::new, new Item.Properties().stacksTo(1).fireResistant());
 
-    /** In progression order. */
     public static final List<RegistryHandler.Items<Item>> NETS = List.of(COPPER_NET, IRON_NET, GOLD_NET, DIAMOND_NET, NETHERITE_NET);
 
-    // Trap-only catches. Food values sit next to vanilla cod/salmon; crustaceans cook into better meals.
     public static final RegistryHandler.Items<Item> TROUT = food("trout", 2, 0.1F);
     public static final RegistryHandler.Items<Item> COOKED_TROUT = food("cooked_trout", 6, 0.8F);
     public static final RegistryHandler.Items<Item> CATFISH = food("catfish", 3, 0.1F);
@@ -53,11 +48,9 @@ public class ModItems {
     public static final RegistryHandler.Items<Item> CRAYFISH = food("crayfish", 1, 0.1F);
     public static final RegistryHandler.Items<Item> COOKED_CRAYFISH = food("cooked_crayfish", 4, 0.5F);
 
-    /** Raw catches; {@link #COOKED_CATCHES} holds the cooked form at the same index. */
     public static final List<RegistryHandler.Items<Item>> RAW_CATCHES = List.of(TROUT, CATFISH, MACKEREL, CRAB, LOBSTER, CRAYFISH);
     public static final List<RegistryHandler.Items<Item>> COOKED_CATCHES = List.of(COOKED_TROUT, COOKED_CATFISH, COOKED_MACKEREL, COOKED_CRAB, COOKED_LOBSTER, COOKED_CRAYFISH);
 
-    /** Only catchable with a Netherite Net. Eaten raw; a shield of absorption and resistance, like a golden apple for anglers. */
     public static final RegistryHandler.Items<Item> RAINBOW_FISH = Services.REGISTRY.registerItem("rainbow_fish", Item::new, new Item.Properties()
             .rarity(Rarity.EPIC)
             .component(DataComponents.ENCHANTMENT_GLINT_OVERRIDE, true)

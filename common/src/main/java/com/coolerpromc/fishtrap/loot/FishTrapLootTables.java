@@ -18,14 +18,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-/**
- * Picks the catch table for a trap position. Tables live at {@code data/fishtrap/loot_table/fish_trap/}:
- * <ol>
- *     <li>{@code <biome>} for vanilla biomes, or {@code <namespace>/<biome>} for modded ones</li>
- *     <li>the first matching biome category, by tag, in the order of {@link #CATEGORIES}</li>
- *     <li>{@code default}</li>
- * </ol>
- */
 public final class FishTrapLootTables {
     public static final ResourceKey<LootTable> DEFAULT = key("default");
     public static final ResourceKey<LootTable> OCEAN = key("ocean");
@@ -34,12 +26,10 @@ public final class FishTrapLootTables {
     public static final ResourceKey<LootTable> RIVER = key("river");
     public static final ResourceKey<LootTable> SWAMP = key("swamp");
 
-    /** Biome tags a datapack can extend to route more biomes into a category ({@code data/fishtrap/tags/worldgen/biome/fish_trap/}). */
     public static final TagKey<Biome> WARM_OCEAN_BIOMES = biomeTag("warm_ocean");
     public static final TagKey<Biome> COLD_OCEAN_BIOMES = biomeTag("cold_ocean");
     public static final TagKey<Biome> SWAMP_BIOMES = biomeTag("swamp");
 
-    /** Most specific first: warm and cold oceans are also {@code #minecraft:is_ocean}. */
     private static final List<Map.Entry<TagKey<Biome>, ResourceKey<LootTable>>> CATEGORIES = List.of(
             Map.entry(WARM_OCEAN_BIOMES, WARM_OCEAN),
             Map.entry(COLD_OCEAN_BIOMES, COLD_OCEAN),

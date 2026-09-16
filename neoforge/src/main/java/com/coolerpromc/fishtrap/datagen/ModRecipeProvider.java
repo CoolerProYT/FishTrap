@@ -34,16 +34,12 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(Items.STRING), has(Items.STRING))
                 .save(output);
 
-        // Bait progression: every tier consumes the previous one, plus something from a new part of the world.
-
-        // Tier 1 - farm: seeds.
         shapeless(RecipeCategory.MISC, ModItems.PLANT_BAIT, 4)
                 .requires(Items.WHEAT_SEEDS, 2)
                 .requires(Items.BONE_MEAL)
                 .unlockedBy(getHasName(Items.WHEAT_SEEDS), has(Items.WHEAT_SEEDS))
                 .save(output);
 
-        // Tier 2 - night: zombie drops.
         shapeless(RecipeCategory.MISC, ModItems.WORM_BAIT, 4)
                 .requires(ModItems.PLANT_BAIT, 2)
                 .requires(Items.ROTTEN_FLESH)
@@ -51,7 +47,6 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(ModItems.PLANT_BAIT), has(ModItems.PLANT_BAIT))
                 .save(output);
 
-        // Tier 3 - first catches: any fish (including trap-only ones), so a basic trap feeds the next tier.
         shapeless(RecipeCategory.MISC, ModItems.FISH_CHUM, 4)
                 .requires(ModItems.WORM_BAIT, 2)
                 .requires(tag(ItemTags.FISHES))
@@ -59,7 +54,6 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(ModItems.WORM_BAIT), has(ModItems.WORM_BAIT))
                 .save(output);
 
-        // Tier 4 - lush caves and glow squid.
         shapeless(RecipeCategory.MISC, ModItems.GLOW_BAIT, 2)
                 .requires(ModItems.FISH_CHUM, 2)
                 .requires(Items.GLOW_BERRIES)
@@ -67,7 +61,6 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(ModItems.FISH_CHUM), has(ModItems.FISH_CHUM))
                 .save(output);
 
-        // Tier 5 - ocean monuments.
         shaped(RecipeCategory.MISC, ModItems.PRISMARINE_LURE, 2)
                 .define('C', Items.PRISMARINE_CRYSTALS)
                 .define('S', Items.PRISMARINE_SHARD)
@@ -78,7 +71,6 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(ModItems.GLOW_BAIT), has(ModItems.GLOW_BAIT))
                 .save(output);
 
-        // Tier 6 - treasure: nautilus shells come from fishing, wandering traders or high-luck trap catches.
         shaped(RecipeCategory.MISC, ModItems.NAUTILUS_LURE, 4)
                 .define('N', Items.NAUTILUS_SHELL)
                 .define('L', ModItems.PRISMARINE_LURE)
@@ -89,7 +81,6 @@ public class ModRecipeProvider extends RecipeProvider {
                 .unlockedBy(getHasName(Items.NAUTILUS_SHELL), has(Items.NAUTILUS_SHELL))
                 .save(output);
 
-        // Nets: copper from scratch, then each tier is woven around the previous net. Netherite follows vanilla's smithing upgrade.
         shaped(RecipeCategory.TOOLS, ModItems.COPPER_NET)
                 .define('S', Items.STRING)
                 .define('I', Items.COPPER_INGOT)
@@ -124,10 +115,8 @@ public class ModRecipeProvider extends RecipeProvider {
                 .save(output);
     }
 
-    /** Furnace, smoker and campfire, with vanilla's fish timings and experience. */
     private void cook(ItemLike raw, ItemLike cooked) {
         String name = Constants.MODID + ":" + getItemName(cooked);
-        // Smelting keeps the default id (the cooked item's id); vanilla rejects passing that id explicitly.
         SimpleCookingRecipeBuilder.smelting(Ingredient.of(raw), RecipeCategory.FOOD, CookingBookCategory.FOOD, cooked, 0.35F, 200)
                 .unlockedBy(getHasName(raw), has(raw))
                 .save(output);

@@ -19,10 +19,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-/**
- * Datapack driven bait lookup. Rebuilt from {@code data/<namespace>/bait/*.json} on every server data reload,
- * so {@code /reload} picks up changes without a restart. Clients receive a copy through the data sync payload.
- */
 public class BaitRegistry extends SimpleJsonResourceReloadListener<BaitType> {
     public static final String DIRECTORY = "bait";
     public static final Identifier ID = Constants.id(DIRECTORY);
@@ -36,7 +32,6 @@ public class BaitRegistry extends SimpleJsonResourceReloadListener<BaitType> {
     @Override
     protected void apply(Map<Identifier, BaitType> entries, ResourceManager resourceManager, ProfilerFiller profiler) {
         Map<Item, BaitType> byItem = new IdentityHashMap<>();
-        // Sorted so that when two files claim the same item, the winner does not depend on hash order.
         new TreeMap<>(entries).forEach((id, bait) -> {
             if (byItem.put(bait.item(), bait) != null) {
                 Constants.LOG.warn("Fish trap bait {} overrides an earlier entry for item {}", id, BuiltInRegistries.ITEM.getKey(bait.item()));
@@ -46,7 +41,6 @@ public class BaitRegistry extends SimpleJsonResourceReloadListener<BaitType> {
         Constants.LOG.info("Loaded {} fish trap bait types", byItem.size());
     }
 
-    /** Replaces the lookup with the server's copy on the client. */
     public static void acceptSynced(Collection<BaitType> synced) {
         Map<Item, BaitType> byItem = new IdentityHashMap<>();
         synced.forEach(bait -> byItem.put(bait.item(), bait));
@@ -65,7 +59,6 @@ public class BaitRegistry extends SimpleJsonResourceReloadListener<BaitType> {
         return baits.values();
     }
 
-    /** Weakest to strongest: by luck, then by speed. */
     public static List<BaitType> sorted() {
         return baits.values().stream()
                 .sorted(Comparator.comparingDouble(BaitType::luck).thenComparing(BaitType::minTicks, Comparator.reverseOrder()))

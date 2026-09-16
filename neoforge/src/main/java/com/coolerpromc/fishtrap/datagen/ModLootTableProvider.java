@@ -57,16 +57,9 @@ public final class ModLootTableProvider {
         }
     }
 
-    /**
-     * Catch tables. Rarity comes purely from vanilla weight + quality: effective weight = weight + quality * luck,
-     * where luck is the bait's luck plus the net's. Junk has negative quality, treasure positive. Traps also catch
-     * some bait back, so a running trap can partly sustain itself. The trap's net is the loot tool, so the Rainbow
-     * Fish uses a vanilla match_tool condition to require the netherite net.
-     */
     private record FishTrapLoot(HolderLookup.Provider registries) implements LootTableSubProvider {
         @Override
         public void generate(BiConsumer<ResourceKey<LootTable>, LootTable.Builder> output) {
-            // Lakes, beaches and anything without a more specific table.
             output.accept(FishTrapLootTables.DEFAULT, table(
                     entry(Items.COD, 45, -1),
                     entry(Items.SALMON, 20, -1),
@@ -158,7 +151,6 @@ public final class ModLootTableProvider {
                     rainbowFish(1)
             ));
 
-            // Rainbow fish are most at home in warm reefs.
             output.accept(FishTrapLootTables.WARM_OCEAN, table(
                     entry(Items.TROPICAL_FISH, 40, 0),
                     entry(Items.PUFFERFISH, 25, 0),

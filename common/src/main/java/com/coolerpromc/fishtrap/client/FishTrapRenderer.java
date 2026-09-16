@@ -20,16 +20,13 @@ import org.jspecify.annotations.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
-/** Draws the current bait spinning inside the blue bait tube and the catch lying on the cage floor. */
 public class FishTrapRenderer implements BlockEntityRenderer<FishTrapBlockEntity, FishTrapRenderState> {
-    // Model coordinates (1/16 block), matching blockbench/fish_trap.bbmodel.
     private static final float BAIT_X = 4.0F;
     private static final float BAIT_Y = 5.5F;
     private static final float BAIT_Z = 8.0F;
     private static final float BAIT_SCALE = 0.15F;
     private static final float CATCH_Y = 0.6F;
     private static final float CATCH_SCALE = 0.22F;
-    /** Floor spots clear of the mesh walls; the bait tube and funnel hang above floor height. */
     private static final float[][] CATCH_SPOTS = {{3.5F, 5.2F}, {7.0F, 10.8F}, {10.5F, 5.2F}, {3.5F, 10.8F}, {7.0F, 5.2F}, {10.5F, 10.8F}};
 
     private final ItemModelResolver itemModelResolver;
@@ -60,8 +57,6 @@ public class FishTrapRenderer implements BlockEntityRenderer<FishTrapBlockEntity
             catchStates.add(itemState);
         }
         state.catches = catchStates;
-
-        // Two degrees per tick; 720 degrees is two full turns, so wrapping the game time keeps the spin continuous.
         state.baitSpin = level == null ? 0.0F : (level.getGameTime() % 360L + partialTicks) * 2.0F;
         state.seed = seed;
     }

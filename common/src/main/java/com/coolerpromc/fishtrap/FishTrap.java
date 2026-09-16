@@ -11,6 +11,7 @@ import com.coolerpromc.fishtrap.network.FishTrapDataPayload;
 import com.coolerpromc.fishtrap.network.HandledCustomPacketPayload;
 import com.coolerpromc.fishtrap.platform.Services;
 import com.coolerpromc.fishtrap.screen.ModMenuTypes;
+import com.coolerpromc.fishtrap.upgrade.NetRegistry;
 import com.mojang.serialization.Codec;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Registry;
@@ -80,7 +81,7 @@ public class FishTrap {
         reloadListenersCollected = true;
 
         Services.REGISTRY.registerServerReloadListener(BaitRegistry.ID, new BaitRegistry());
-        Services.REGISTRY.registerServerReloadListener(com.coolerpromc.fishtrap.upgrade.NetRegistry.ID, new com.coolerpromc.fishtrap.upgrade.NetRegistry());
+        Services.REGISTRY.registerServerReloadListener(NetRegistry.ID, new NetRegistry());
     }
 
     public static void initCommand(){
@@ -90,7 +91,6 @@ public class FishTrap {
         commandsCollected = true;
     }
 
-    /** Called by each loader when datapack contents are synced to a player (join and {@code /reload}). */
     public static void onDatapackSync(ServerPlayer player){
         Services.NETWORK.sendToPlayer(player, FishTrapDataPayload.create(player.level().getServer()));
     }

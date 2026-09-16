@@ -40,9 +40,7 @@ import org.jspecify.annotations.Nullable;
 public class FishTrapBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
     public static final MapCodec<FishTrapBlock> CODEC = simpleCodec(FishTrapBlock::new);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
-    /** Look of the funnel and bait tube, kept in sync with the net in the trap by the block entity. */
     public static final EnumProperty<NetStyle> NET = EnumProperty.create("net", NetStyle.class);
-    // Long mesh box of the block model, including the bait cap on the lid.
     private static final VoxelShape SHAPE = Block.box(1, 0, 3, 15, 10.5, 13);
 
     public FishTrapBlock(Properties properties) {

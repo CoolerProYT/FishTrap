@@ -20,7 +20,6 @@ public class ModNetProvider extends JsonCodecProvider<NetType> {
 
     @Override
     protected void gather() {
-        // Each tier waits less, adds luck on top of the bait and may catch twice. Only the netherite net reaches the Rainbow Fish (see loot tables).
         net(ModItems.COPPER_NET, NetStyle.COPPER, 0.9F, 0.5F, 0.0F);
         net(ModItems.IRON_NET, NetStyle.IRON, 0.8F, 1.0F, 0.1F);
         net(ModItems.GOLD_NET, NetStyle.GOLD, 0.8F, 2.0F, 0.15F);

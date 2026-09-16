@@ -11,14 +11,6 @@ import net.minecraft.util.ExtraCodecs;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 
-/**
- * A fish trap bait definition, loaded from {@code data/<namespace>/bait/<name>.json}.
- *
- * @param item     the item that acts as bait
- * @param minTicks the shortest possible catch cycle, inclusive
- * @param maxTicks the longest possible catch cycle, inclusive
- * @param luck     passed to the loot roll as {@code LootContextParams} luck, scaling entry weights by their quality
- */
 public record BaitType(Item item, int minTicks, int maxTicks, float luck) {
     public static final Codec<BaitType> CODEC = RecordCodecBuilder.<BaitType>create(instance -> instance.group(
             BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(BaitType::item),
@@ -27,7 +19,6 @@ public record BaitType(Item item, int minTicks, int maxTicks, float luck) {
             Codec.FLOAT.optionalFieldOf("luck", 0.0F).forGetter(BaitType::luck)
     ).apply(instance, BaitType::new)).validate(BaitType::validate);
 
-    /** Synced to clients for tooltips and recipe viewers. */
     public static final StreamCodec<RegistryFriendlyByteBuf, BaitType> STREAM_CODEC = StreamCodec.composite(
             Item.STREAM_CODEC, bait -> bait.item().builtInRegistryHolder(),
             ByteBufCodecs.VAR_INT, BaitType::minTicks,

@@ -6,10 +6,6 @@ import net.minecraft.resources.Identifier;
 import snownee.jade.api.BlockAccessor;
 import snownee.jade.api.IServerDataProvider;
 
-/**
- * Server half: status and catch progress only exist on the server. Jade (since 1.21.6) requires this to be a
- * separate class from the client-side {@link FishTrapJadeProvider}; both share the same uid.
- */
 public enum FishTrapJadeDataProvider implements IServerDataProvider<BlockAccessor> {
     INSTANCE;
 

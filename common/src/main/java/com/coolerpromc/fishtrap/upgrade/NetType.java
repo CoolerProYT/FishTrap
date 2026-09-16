@@ -8,15 +8,6 @@ import net.minecraft.network.codec.ByteBufCodecs;
 import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.item.Item;
 
-/**
- * A fish trap net upgrade, loaded from {@code data/<namespace>/net/<name>.json}.
- *
- * @param item                the item that goes in the net slot
- * @param style               the funnel look shown on the trap
- * @param catchTimeMultiplier multiplies the bait's rolled wait (0.5 = twice as fast)
- * @param luck                added to the bait's luck for the catch roll
- * @param bonusCatchChance    chance (0 to 1) of rolling the catch table a second time in the same cycle
- */
 public record NetType(Item item, NetStyle style, float catchTimeMultiplier, float luck, float bonusCatchChance) {
     public static final Codec<NetType> CODEC = RecordCodecBuilder.create(instance -> instance.group(
             BuiltInRegistries.ITEM.byNameCodec().fieldOf("item").forGetter(NetType::item),

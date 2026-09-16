@@ -18,7 +18,6 @@ public class ModItemTagsProvider extends ItemTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider registries) {
-        // Lets cats, recipes that take any fish (like fish chum) and other mods treat trap catches as fish.
         TagAppender<Item, Item> fishes = tag(ItemTags.FISHES);
         ModItems.RAW_CATCHES.forEach(item -> fishes.add(item.get()));
         ModItems.COOKED_CATCHES.forEach(item -> fishes.add(item.get()));

@@ -17,7 +17,6 @@ import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.ItemStack;
 
-/** Catch speed, luck and bonus catch chance of each net. */
 public class NetCategory extends AbstractRecipeCategory<NetRecipe> {
     public static final IRecipeType<NetRecipe> TYPE = IRecipeType.create(Constants.id("fish_trap_net"), NetRecipe.class);
     private static final int TEXT_COLOR = 0xFF404040;
@@ -28,9 +27,7 @@ public class NetCategory extends AbstractRecipeCategory<NetRecipe> {
 
     @Override
     public void setRecipe(IRecipeLayoutBuilder builder, NetRecipe recipe, IFocusGroup focuses) {
-        builder.addSlot(RecipeIngredientRole.INPUT, 1, 15)
-                .setStandardSlotBackground()
-                .add(new ItemStack(recipe.net().item()));
+        builder.addSlot(RecipeIngredientRole.INPUT, 1, 15).setStandardSlotBackground().add(new ItemStack(recipe.net().item()));
     }
 
     @Override

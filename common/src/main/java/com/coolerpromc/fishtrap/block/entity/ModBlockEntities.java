@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.function.Supplier;
 
 public class ModBlockEntities {
-    public static final RegistryHandler<BlockEntityType<?>, BlockEntityType<FishTrapBlockEntity>> FISH_TRAP = Services.REGISTRY.registerBlockEntityType("fish_trap", FishTrapBlockEntity::new, List.<Supplier<? extends Block>>of(ModBlocks.FISH_TRAP));
+    public static final RegistryHandler<BlockEntityType<?>, BlockEntityType<FishTrapBlockEntity>> FISH_TRAP = Services.REGISTRY.registerBlockEntityType("fish_trap", FishTrapBlockEntity::new, List.of(ModBlocks.FISH_TRAP));
 
     public static void load() {
     }

@@ -18,7 +18,6 @@ import net.minecraft.world.item.ItemStack;
 
 public class FishTrapMenu extends AbstractContainerMenu {
     public static final int IMAGE_HEIGHT = 178;
-    // Bait and net slots stack beside the progress arrow; together with the 3x3 output grid they form a group centred in the GUI.
     public static final int BAIT_SLOT_X = 35;
     public static final int BAIT_SLOT_Y = 24;
     public static final int NET_SLOT_X = 35;
@@ -37,8 +36,7 @@ public class FishTrapMenu extends AbstractContainerMenu {
     private final ContainerLevelAccess access;
 
     public FishTrapMenu(int containerId, Inventory playerInventory, BlockPos pos) {
-        this(containerId, playerInventory, new SimpleContainer(1), new SimpleContainer(1), new SimpleContainer(FishTrapBlockEntity.OUTPUT_SLOT_COUNT),
-                new SimpleContainerData(FishTrapBlockEntity.DATA_COUNT), ContainerLevelAccess.NULL);
+        this(containerId, playerInventory, new SimpleContainer(1), new SimpleContainer(1), new SimpleContainer(FishTrapBlockEntity.OUTPUT_SLOT_COUNT), new SimpleContainerData(FishTrapBlockEntity.DATA_COUNT), ContainerLevelAccess.NULL);
     }
 
     public FishTrapMenu(int containerId, Inventory playerInventory, Container bait, Container net, Container output, ContainerData data, ContainerLevelAccess access) {
@@ -50,7 +48,6 @@ public class FishTrapMenu extends AbstractContainerMenu {
         this.data = data;
         this.access = access;
 
-        // The block entity's containers check the bait/net registries; client-side containers accept anything and get corrected by the server.
         this.addSlot(new Slot(bait, 0, BAIT_SLOT_X, BAIT_SLOT_Y) {
             @Override
             public boolean mayPlace(ItemStack stack) {
@@ -94,7 +91,6 @@ public class FishTrapMenu extends AbstractContainerMenu {
         this.addDataSlots(data);
     }
 
-    /** Progress of the current catch cycle from 0 to 1, or 0 while idle. */
     public float getCatchProgress() {
         int timer = this.data.get(FishTrapBlockEntity.DATA_TIMER);
         int duration = this.data.get(FishTrapBlockEntity.DATA_DURATION);
@@ -142,7 +138,6 @@ public class FishTrapMenu extends AbstractContainerMenu {
                 return ItemStack.EMPTY;
             }
 
-            // The moved copy, since the original may now be empty (catch advancements check the item).
             slot.onTake(player, result);
         }
         return result;

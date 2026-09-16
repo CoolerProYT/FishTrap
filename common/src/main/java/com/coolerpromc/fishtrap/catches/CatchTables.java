@@ -21,10 +21,6 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-/**
- * Loot tables are server-only data, so the server flattens every {@code fishtrap:fish_trap/*} table into plain
- * item/weight/quality entries and syncs them; recipe viewers read the client copy.
- */
 public final class CatchTables {
     public static final String PREFIX = "fish_trap/";
 
@@ -44,13 +40,10 @@ public final class CatchTables {
                     return id.getNamespace().equals(Constants.MODID) && id.getPath().startsWith(PREFIX);
                 })
                 .sorted(Comparator.comparing(holder -> holder.key().identifier()))
-                // Encoding back to JSON avoids reaching into the loot table's private pool/entry fields.
-                .forEach(holder -> LootTable.DIRECT_CODEC.encodeStart(ops, holder.value())
-                        .ifSuccess(json -> tables.add(new CatchTable(holder.key().identifier(), readEntries(json)))));
+                .forEach(holder -> LootTable.DIRECT_CODEC.encodeStart(ops, holder.value()).ifSuccess(json -> tables.add(new CatchTable(holder.key().identifier(), readEntries(json)))));
         return tables;
     }
 
-    /** Plain item entries only; nested tables and alternatives are not flattened. Tool (net) conditions are kept. */
     private static List<CatchEntry> readEntries(JsonElement json) {
         List<CatchEntry> entries = new ArrayList<>();
         if (!json.isJsonObject()) {
@@ -80,7 +73,6 @@ public final class CatchTables {
         return entries;
     }
 
-    /** Items listed by {@code minecraft:match_tool} conditions; tags are not expanded. */
     private static List<Holder<Item>> readRequiredTools(JsonObject entry) {
         List<Holder<Item>> tools = new ArrayList<>();
         for (JsonElement element : GsonHelper.getAsJsonArray(entry, "conditions", new JsonArray())) {
@@ -113,7 +105,6 @@ public final class CatchTables {
         return synced;
     }
 
-    /** Called on the client thread after every sync (join and {@code /reload}). */
     public static void onSync(Runnable listener) {
         SYNC_LISTENERS.add(listener);
     }

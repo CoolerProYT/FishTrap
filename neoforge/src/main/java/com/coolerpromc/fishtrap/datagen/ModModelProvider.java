@@ -21,10 +21,7 @@ public class ModModelProvider extends ModelProvider {
 
     @Override
     protected void registerModels(BlockModelGenerators blockModels, ItemModelGenerators itemModels) {
-        // The trap geometry is hand built (see blockbench/fish_trap.bbmodel) and lives in common/src/main/resources,
-        // together with one child model per net style that only swaps the funnel texture. The block item uses the plain model.
-        blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(ModBlocks.FISH_TRAP.get())
-                .with(PropertyDispatch.initial(FishTrapBlock.NET).generate(style -> BlockModelGenerators.plainVariant(netModel(style)))));
+        blockModels.blockStateOutput.accept(MultiVariantGenerator.dispatch(ModBlocks.FISH_TRAP.get()).with(PropertyDispatch.initial(FishTrapBlock.NET).generate(style -> BlockModelGenerators.plainVariant(netModel(style)))));
 
         ModItems.BAITS.forEach(bait -> itemModels.generateFlatItem(bait.get(), ModelTemplates.FLAT_ITEM));
         ModItems.NETS.forEach(net -> itemModels.generateFlatItem(net.get(), ModelTemplates.FLAT_ITEM));
