@@ -30,18 +30,13 @@ for (const [key, value] of Object.entries(lang)) {
   if (match) names[`fishtrap:${match[2]}`] = value
 }
 
-// Only the mod's own textures are copied; vanilla items use hosted icons on the page.
+// Mod textures are hosted at 1024x1024 alongside the vanilla renders; upload new ones there before syncing.
+// Block items have no flat texture, so their icons are rendered from the block model (sources kept in public/icons/).
+const HOSTED_TEXTURES = 'https://storage.googleapis.com/coolerpromc/textures/fishtrap'
+const pngNames = (dir) => (existsSync(dir) ? readdirSync(dir).filter((f) => f.endsWith('.png')).map((f) => basename(f, '.png')) : [])
 const textures = {}
-const itemTextures = join(assets, 'textures/item')
-mkdirSync(join(docs, 'public/items'), { recursive: true })
-for (const file of existsSync(itemTextures) ? readdirSync(itemTextures).filter((f) => f.endsWith('.png')) : []) {
-  copyFileSync(join(itemTextures, file), join(docs, 'public/items', file))
-  textures[`fishtrap:${basename(file, '.png')}`] = `/items/${file}`
-}
-// Block items have no flat texture, so their icons are rendered from the block model and committed in public/icons/.
-const renderedIcons = join(docs, 'public/icons')
-for (const file of existsSync(renderedIcons) ? readdirSync(renderedIcons).filter((f) => f.endsWith('.png')) : []) {
-  textures[`fishtrap:${basename(file, '.png')}`] ??= `/icons/${file}`
+for (const name of [...pngNames(join(assets, 'textures/item')), ...pngNames(join(docs, 'public/icons'))]) {
+  textures[`fishtrap:${name}`] = `${HOSTED_TEXTURES}/${name}.png`
 }
 mkdirSync(join(docs, 'public/gui'), { recursive: true })
 copyFileSync(join(assets, 'textures/gui/container/fish_trap.png'), join(docs, 'public/gui/fish_trap.png'))

@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // GitHub Pages serves a project site from /<repository>/. For a custom domain or a user site, build with DOCS_BASE=/.
 const base = process.env.DOCS_BASE ?? '/FishTrap/'
+const TROUT_ICON = 'https://storage.googleapis.com/coolerpromc/textures/fishtrap/trout.png'
 
 export default defineConfig({
   title: 'Fish Trap',
@@ -9,10 +10,9 @@ export default defineConfig({
   base,
   cleanUrls: true,
   srcExclude: ['README.md', 'scripts/**'],
-  // `head` entries are not rewritten for the base path, unlike links, images and the theme logo.
-  head: [['link', { rel: 'icon', type: 'image/png', href: `${base}items/trout.png` }]],
+  head: [['link', { rel: 'icon', type: 'image/png', href: TROUT_ICON }]],
   themeConfig: {
-    logo: { src: '/items/trout.png', alt: '' },
+    logo: { src: TROUT_ICON, alt: '' },
     nav: [
       { text: 'Guide', link: '/guide/getting-started' },
       { text: 'Catches', link: '/guide/catches' },

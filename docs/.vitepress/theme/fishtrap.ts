@@ -91,16 +91,16 @@ export function itemName(id: string): string {
 const VANILLA_ICONS = 'https://storage.googleapis.com/coolerpromc/textures'
 
 /**
- * Where to load an item's icon from. Mod items use the textures copied from the mod (a site path);
+ * Where to load an item's icon from. Mod items use the hosted textures listed by the sync script;
  * vanilla items use the hosted renders.
  */
-export function itemIcon(id: string): { src: string; local: boolean } | null {
+export function itemIcon(id: string): string | null {
   const itemId = TAG_ICONS[id] ?? id
-  if (data.textures[itemId]) return { src: data.textures[itemId], local: true }
+  if (data.textures[itemId]) return data.textures[itemId]
   // @ts-ignore
   const [namespace, path] = itemId.includes(':') ? itemId.split(':') : ['minecraft', itemId]
   if (namespace !== 'minecraft') return null
-  return { src: `${VANILLA_ICONS}/${namespace}/${path}.png`, local: false }
+  return `${VANILLA_ICONS}/${namespace}/${path}.png`
 }
 
 /** Vanilla loot pools: max(floor(weight + quality * luck), 0). */
